@@ -72,6 +72,5 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
 * Ban management
 * Member pruning
 * Invites
-* File uploads
 * Voice decoding
 * WebRTC transport implementation (?)
