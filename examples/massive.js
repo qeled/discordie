@@ -100,6 +100,10 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
 		});
 	}
 	if(e.message.content.indexOf("play") == 0) {
+		// client.voiceConnections is a temporary interface
+		if(client.voiceConnections.length <= 0) {
+			return e.message.reply("Not connected to any channel");
+		}
 		play();
 	}
 	if(e.message.content.indexOf("stop") == 0) {
@@ -119,10 +123,8 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_DELETE, (e) => {
 });
 
 client.Dispatcher.on(Discordie.Events.VOICE_CONNECTED, (data) => {
-	// client.voiceConnections is a temporary interface
-	if(client.voiceConnections.length < 0) {
-		console.log("Voice not connected");
-		return;
+	if(client.voiceConnections.length <= 0) {
+		return console.log("Voice not connected");
 	}
 
 	// uncomment to play on join
@@ -157,6 +159,9 @@ function play() {
 			// WIP
 			// client.voiceConnections[0].audioScheduler will be replaced
 
+			if(client.voiceConnections.length <= 0) {
+				return console.log("Voice not connected");
+			}
 			var scheduler = client.voiceConnections[0].audioScheduler;
 			scheduler.initialize(options);
 			scheduler.onNeedBuffer = function() {
