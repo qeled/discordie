@@ -1,6 +1,12 @@
+### Discordie
+
+A Node.js module providing a set of interfaces to interact with Discord API.
+
+**Requires at least Node.js 4.0.0.**
+
 ### WIP
 
-This module is in development.
+This module is in development. Things MAY and WILL break.
 
 You might consider using these instead:
 

@@ -133,7 +133,7 @@ var stopPlaying = false;
 function play() {
 	stopPlaying = false;
 
-	var mp3decoder = new lame.Decoder({float: true});
+	var mp3decoder = new lame.Decoder();
 	mp3decoder.on('format', decode);
 	fs.createReadStream("test.mp3").pipe(mp3decoder);
 
