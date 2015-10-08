@@ -57,3 +57,12 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
 	}
 });
 ```
+
+### TODO
+
+* Guild and account creation
+* Roles and permissions
+* Ban management
+* Member pruning
+* User management API
+* Voice decoding
