@@ -1,0 +1,30 @@
+{
+  "name": "discordie",
+  "version": "0.0.1",
+  "description": "A Node.js interface for the Discord API.",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "node ./tests/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qeled/discordie.git"
+  },
+  "keywords": [
+    "discordapp",
+    "discord",
+    "api",
+    "client",
+    "node",
+    "node.js"
+  ],
+  "author": "qeled",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "ecma-nacl": "^2.2.0",
+    "requireindex": "^1.1.0",
+    "ssl-root-cas": "^1.1.10",
+    "superagent": "^1.4.0",
+    "ws": "^0.8.0"
+  }
+}
