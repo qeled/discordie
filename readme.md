@@ -11,6 +11,7 @@ You might consider using these instead:
 
 ##### Node.js
 [discord.io](https://github.com/izy521/node-discord)
+
 [discord.js](https://github.com/hydrabolt/discord.js)
 
 ##### Java:
