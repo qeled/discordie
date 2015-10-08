@@ -4,7 +4,7 @@ A Node.js module providing a set of interfaces to interact with Discord API.
 
 **Requires at least Node.js 4.0.0.**
 
-# WIP
+## WIP
 
 This module is in development. Things MAY and WILL break.
 
@@ -30,7 +30,7 @@ You might consider using these instead:
 [discordrb](https://github.com/meew0/discordrb)
 
 
-# Example
+## Example
 
 ```js
 var Discordie = require("discordie");
@@ -64,7 +64,7 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
 });
 ```
 
-# TODO
+## TODO
 
 * Guild and account creation
 * User management API
