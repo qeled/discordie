@@ -1,0 +1,13 @@
+.eslintrc
+logs
+*.log
+npm-debug.log*
+pids
+*.pid
+*.seed
+.grunt
+.lock-wscript
+build/Release
+node_modules
+examples/auth.js
+examples/test.mp3

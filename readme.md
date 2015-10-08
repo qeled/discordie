@@ -1,6 +1,6 @@
 ### WIP
 
-This module in development.
+This module is in development.
 
 You might consider using these instead:
 
