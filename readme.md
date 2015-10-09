@@ -66,11 +66,11 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
 
 ## TODO
 
-* Guild and account creation
+* Invites
 * User management API
 * Roles and permissions
 * Ban management
 * Member pruning
-* Invites
+* Account creation
 * Voice decoding
 * WebRTC transport implementation (?)
