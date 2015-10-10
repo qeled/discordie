@@ -66,7 +66,6 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
 
 ## TODO
 
-* Invites
 * User management API
 * Roles and permissions
 * Ban management
