@@ -66,8 +66,8 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
 
 ## TODO
 
+* Voice decoding
 * Roles and permissions
 * Member pruning
 * Account creation
-* Voice decoding
 * WebRTC transport implementation (?)
