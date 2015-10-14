@@ -36,8 +36,8 @@ You might consider using these instead:
 var Discordie = require("discordie");
 
 var auth = {
-	email: "discordie@example.com",
-	password: ""
+  email: "discordie@example.com",
+  password: ""
 };
 
 var client = new Discordie();
@@ -46,21 +46,21 @@ function connect() { client.connect(auth); }
 connect();
 
 client.Dispatcher.on(Discordie.Events.DISCONNECTED, (e) => {
-	console.log("Reconnecting");
-	setTimeout(connect, 5000);
+  console.log("Reconnecting");
+  setTimeout(connect, 5000);
 });
 
 client.Dispatcher.on(Discordie.Events.GATEWAY_READY, (e) => {
-	console.log("Connected as: " + client.User.username);
+  console.log("Connected as: " + client.User.username);
 });
 
 client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
-	console.log("new message: ");
-	console.log(JSON.stringify(e.message, null, "  "));
+  console.log("new message: ");
+  console.log(JSON.stringify(e.message, null, "  "));
 
-	if(e.message.content == "ping") {
-		e.message.channel.sendMessage("pong");
-	}
+  if (e.message.content == "ping") {
+    e.message.channel.sendMessage("pong");
+  }
 });
 ```
 
