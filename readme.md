@@ -8,8 +8,6 @@ This module is in development. Things MAY and WILL break.
 
 ## Links
 
-You might consider using these instead:
-
 ##### .NET:
 [Discord.Net](https://github.com/RogueException/Discord.Net)
 
