@@ -4,9 +4,9 @@ A Node.js module providing a set of interfaces to interact with Discord API.
 
 **Requires at least Node.js 4.0.0.**
 
-## WIP
-
 This module is in development. Things MAY and WILL break.
+
+## Links
 
 You might consider using these instead:
 
@@ -66,8 +66,7 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
 
 ## TODO
 
-* Voice decoding
-* Roles and permissions
+* Voice interfaces
 * Member pruning
-* Account creation
+* Account creation (?)
 * WebRTC transport implementation (?)
