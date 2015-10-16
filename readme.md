@@ -8,19 +8,22 @@ This module is in development. Things MAY and WILL break.
 
 Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](https://discord.gg/0SBTUU1wZTWO5NWd).
 
-## Mostly Implemented
+## Fully Implemented
 
 * Role and channel permission management API
-* Guild (server) and channel management API
 * Message management API
 * Member management API (kicking, banning, etc.)
-* Local user profile (username change, statuses)
 * Direct messages API
-
-## WIP Features (working internally)
-
-* Voice encoding, sending, decoding and receiving
+* `(WIP, currently in process of refactoring)` Voice encoding, sending, decoding and receiving
 (audio streaming example: [`examples/massive.js`](https://github.com/qeled/discordie/blob/master/examples/massive.js))
+
+## Mostly Implemented
+
+* Guild (server) and channel management API
+ * No member pruning yet
+* Local user profile (username change, statuses)
+ * No proper API for uploading avatars and guild icons yet
+
 
 ## Documentation
 
