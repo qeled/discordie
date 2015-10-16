@@ -6,6 +6,8 @@ A Node.js module providing a set of interfaces to interact with Discord API.
 
 This module is in development. Things MAY and WILL break.
 
+Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](https://discord.gg/0SBTUU1wZTWO5NWd).
+
 ## Links
 
 ##### .NET:
