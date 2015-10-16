@@ -5,6 +5,7 @@ npm-debug.log*
 pids
 *.pid
 *.seed
+.idea
 .grunt
 .lock-wscript
 build/Release
