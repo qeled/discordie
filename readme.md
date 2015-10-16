@@ -8,7 +8,7 @@ This module is in development. Things MAY and WILL break.
 
 Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](https://discord.gg/0SBTUU1wZTWO5NWd).
 
-## Fully implemented
+## Mostly Implemented
 
 * Role and channel permission management API
 * Guild (server) and channel management API
