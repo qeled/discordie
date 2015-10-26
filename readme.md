@@ -4,7 +4,7 @@ A Node.js module providing a set of interfaces to interact with Discord API.
 
 **Requires at least Node.js 4.0.0.**
 
-This module is in development. Things MAY and WILL break.
+This module is in development. Some things may break.
 
 Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](https://discord.gg/0SBTUU1wZTWO5NWd).
 
@@ -14,7 +14,7 @@ Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](htt
 * Message management API
 * Member management API (kicking, banning, etc.)
 * Direct messages API
-* `(WIP, currently in process of refactoring)` Voice encoding, sending, decoding and receiving
+* Voice encoding, sending, decoding and receiving
 (audio streaming example: [`examples/massive.js`](https://github.com/qeled/discordie/blob/master/examples/massive.js))
 
 ## Mostly Implemented
@@ -24,6 +24,10 @@ Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](htt
 * Local user profile (username change, statuses)
  * No proper API for uploading avatars and guild icons yet
 
+## Planned
+
+* Stream interfaces
+* Channel and role reordering
 
 ## Documentation
 

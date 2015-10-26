@@ -96,12 +96,12 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
 		e.message.channel.guild.voiceChannels
 		.forEach(channel => {
 			if(channel.name.toLowerCase().indexOf(targetChannel) >= 0)
-				channel.join();
+				channel.join().then(v => play(v));
+				// channel.join() returns a promise with voiceConnectionInfo
 		});
 	}
 	if(e.message.content.indexOf("play") == 0) {
-		// client.voiceConnections is a temporary interface
-		if(client.voiceConnections.length <= 0) {
+		if(!client.VoiceConnections.length) {
 			return e.message.reply("Not connected to any channel");
 		}
 		play();
@@ -132,7 +132,7 @@ client.Dispatcher.on(Discordie.Events.VOICE_CONNECTED, (data) => {
 });
 
 var stopPlaying = false;
-function play() {
+function play(voiceConnectionInfo) {
 	stopPlaying = false;
 
 	var mp3decoder = new lame.Decoder();
@@ -144,7 +144,9 @@ function play() {
 			frameDuration: 60,
 			sampleRate: pcmfmt.sampleRate,
 			channels: 2,
-			float: false
+			float: false,
+
+			multiThreadedVoice: true
 		};
 
 		const frameDuration = 60;
@@ -156,25 +158,29 @@ function play() {
 			pcmfmt.channels;
 
 		mp3decoder.on('readable', function() {
-			// WIP
-			// client.voiceConnections[0].audioScheduler will be replaced
-
-			if(client.voiceConnections.length <= 0) {
+			if(!client.VoiceConnections.length) {
 				return console.log("Voice not connected");
 			}
-			var scheduler = client.voiceConnections[0].audioScheduler;
-			scheduler.initialize(options);
-			scheduler.onNeedBuffer = function() {
+
+			if(!voiceConnectionInfo) {
+				// get first if not specified
+				voiceConnectionInfo = client.VoiceConnections[0];
+			}
+			var voiceConnection = voiceConnectionInfo.voiceConnection;
+
+			// one encoder per voice connection
+			var encoder = voiceConnection.getEncoder(options);
+			encoder.onNeedBuffer = function() {
 				var chunk = mp3decoder.read(readSize);
 				if(chunk === null || stopPlaying) return;
 				var sampleCount = readSize / pcmfmt.channels / (pcmfmt.bitDepth / 8);
-				scheduler.enqueue(chunk, sampleCount);
+				encoder.enqueue(chunk, sampleCount);
 			};
-			scheduler.onNeedBuffer();
+			encoder.onNeedBuffer();
 		});
 
 		// restarting decoder without setTimeout causes glitches?
-		mp3decoder.on('end', () => setTimeout(play, 100));
+		mp3decoder.on('end', () => setTimeout(play, 100, voiceConnectionInfo));
 	}
 }
 
