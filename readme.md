@@ -10,35 +10,37 @@ Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](htt
 
 ## Fully Implemented
 
+* Messaging
 * Role and channel permission management API
-* Message management API
 * Member management API (kicking, banning, etc.)
-* Direct messages API
+* Direct messages
 * Voice encoding, sending, decoding and receiving
 (audio streaming example: [`examples/massive.js`](https://github.com/qeled/discordie/blob/master/examples/massive.js))
+* Multiserver voice support
 
 ## Mostly Implemented
 
 * Guild (server) and channel management API
- * No member pruning yet
+ * No member pruning and guild info editing yet
 * Local user profile (username change, statuses)
  * No proper API for uploading avatars and guild icons yet
 
 ## Planned
 
 * Stream interfaces
-* Channel and role reordering
 
 ## Documentation
 
 Currently only inline documentation in files:
 * `lib/interfaces/*.js`
+* `lib/models/*.js`
 * `lib/index.js`
 
 ## Example
 
 ```js
 var Discordie = require("discordie");
+var Events = Discordie.Events;
 
 var auth = {
   email: "discordie@example.com",
@@ -50,16 +52,16 @@ var client = new Discordie();
 function connect() { client.connect(auth); }
 connect();
 
-client.Dispatcher.on(Discordie.Events.DISCONNECTED, (e) => {
+client.Dispatcher.on(Events.DISCONNECTED, (e) => {
   console.log("Reconnecting");
   setTimeout(connect, 5000);
 });
 
-client.Dispatcher.on(Discordie.Events.GATEWAY_READY, (e) => {
+client.Dispatcher.on(Events.GATEWAY_READY, (e) => {
   console.log("Connected as: " + client.User.username);
 });
 
-client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
+client.Dispatcher.on(Events.MESSAGE_CREATE, (e) => {
   console.log("new message: ");
   console.log(JSON.stringify(e.message, null, "  "));
 
@@ -93,7 +95,7 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
 
 ## TODO
 
-* Voice interfaces
+* Stream interfaces for voice
 * Member pruning
 * Account creation (?)
 * WebRTC transport implementation (?)
