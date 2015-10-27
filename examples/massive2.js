@@ -1,10 +1,10 @@
 "use strict";
 
-//// note: run "npm install lame" in this folder first
+//// note: run "npm install fluent-ffmpeg" in this folder and install ffmpeg first
 
 // example bot
 
-// audio decoding using "lame"
+// audio decoding using "fluent-ffmpeg" (requires ffmpeg installed)
 
 // commands:
 // ping
@@ -13,7 +13,7 @@
 // play -- plays test.mp3
 // stop
 
-var lame = require('lame');
+var ffmpeg = require('fluent-ffmpeg');
 var fs = require('fs');
 
 var Discordie;
@@ -139,54 +139,64 @@ var stopPlaying = false;
 function play(voiceConnectionInfo) {
 	stopPlaying = false;
 
-	var mp3decoder = new lame.Decoder();
-	mp3decoder.on('format', decode);
-	fs.createReadStream("test.mp3").pipe(mp3decoder);
+	var sampleRate = 48000;
+	var bitDepth = 16;
+	var channels = 1;
 
-	function decode(pcmfmt) {
-		// note: discordie encoder does resampling if rate != 48000
-		var options = {
-			frameDuration: 60,
-			sampleRate: pcmfmt.sampleRate,
-			channels: 2,
-			float: false,
+	var ff = new ffmpeg("test.mp3")
+		.native()
+		.format("s16le")
+		.audioFrequency(sampleRate)
+		.audioChannels(channels)
+		.pipe();
 
-			multiThreadedVoice: true
+	// note: discordie encoder does resampling if rate != 48000
+	var options = {
+		frameDuration: 60,
+		sampleRate: sampleRate,
+		channels: channels,
+		float: false,
+
+		multiThreadedVoice: true
+	};
+
+	const frameDuration = 60;
+
+	var readSize =
+		sampleRate / 1000 *
+		options.frameDuration *
+		bitDepth / 8 *
+		channels;
+
+	var actuallyDecoding = false; // "fluent-ffmpeg" quirks
+	// fires 'readable' few times before actual data
+
+	ff.on('readable', function() {
+		if(actuallyDecoding) return;
+
+		if(!client.VoiceConnections.length) {
+			return console.log("Voice not connected");
+		}
+        
+		if(!voiceConnectionInfo) {
+			// get first if not specified
+			voiceConnectionInfo = client.VoiceConnections[0];
+		}
+		var voiceConnection = voiceConnectionInfo.voiceConnection;
+        
+		// one encoder per voice connection
+		var encoder = voiceConnection.getEncoder(options);
+		encoder.onNeedBuffer = function() {
+			var chunk = ff.read(readSize);
+			if(chunk) actuallyDecoding = true;
+			if(chunk === null || stopPlaying) return;
+			var sampleCount = readSize / channels / (bitDepth / 8);
+			encoder.enqueue(chunk, sampleCount);
 		};
+		encoder.onNeedBuffer();
+	});
 
-		const frameDuration = 60;
-
-		var readSize =
-			pcmfmt.sampleRate / 1000 *
-			options.frameDuration *
-			pcmfmt.bitDepth / 8 *
-			pcmfmt.channels;
-
-		mp3decoder.on('readable', function() {
-			if(!client.VoiceConnections.length) {
-				return console.log("Voice not connected");
-			}
-
-			if(!voiceConnectionInfo) {
-				// get first if not specified
-				voiceConnectionInfo = client.VoiceConnections[0];
-			}
-			var voiceConnection = voiceConnectionInfo.voiceConnection;
-
-			// one encoder per voice connection
-			var encoder = voiceConnection.getEncoder(options);
-			encoder.onNeedBuffer = function() {
-				var chunk = mp3decoder.read(readSize);
-				if(chunk === null || stopPlaying) return;
-				var sampleCount = readSize / pcmfmt.channels / (pcmfmt.bitDepth / 8);
-				encoder.enqueue(chunk, sampleCount);
-			};
-			encoder.onNeedBuffer();
-		});
-
-		// restarting decoder without setTimeout causes glitches?
-		mp3decoder.on('end', () => setTimeout(play, 100, voiceConnectionInfo));
-	}
+	ff.on('end', () => setTimeout(play, 100, voiceConnectionInfo));
 }
 
 client.Dispatcher.onAny((type, args) => {
