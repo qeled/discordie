@@ -21,7 +21,7 @@ Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](htt
 ## Mostly Implemented
 
 * Guild (server) and channel management API
- * No member pruning and guild info editing yet
+ * No guild info editing yet
 * Local user profile (username change, statuses)
  * No proper API for uploading avatars and guild icons yet
 
