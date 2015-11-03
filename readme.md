@@ -27,7 +27,7 @@ Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](htt
 
 ## Planned
 
-* Support for native voice encoding/decoding/resampling libraries (currently can only use embedded `libopus` and `libspeexdsp` compiled with emscripten)
+* Support for native opus (currently can only use embedded `libopus` compiled with emscripten)
 * Stream interfaces
 
 ## Documentation
@@ -98,7 +98,7 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, (e) => {
 
 * Stream interfaces for voice
 * Moving users between voice channels
-* Native opus/resampler support
+* Native opus support
 * Avatar/icon uploading
 * Partial object diffs on some events (?)
 * Account creation (?)
