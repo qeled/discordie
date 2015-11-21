@@ -4,8 +4,6 @@ A Node.js module providing a set of interfaces to interact with Discord API.
 
 **Requires at least Node.js 4.0.0.**
 
-This module is in development. Some things may break.
-
 Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](https://discord.gg/0SBTUU1wZTWO5NWd).
 
 ## Fully Implemented
@@ -96,7 +94,6 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, (e) => {
 ## TODO
 
 * Stream interfaces for voice
-* Moving users between voice channels
 * Avatar/icon uploading
 * Partial object diffs on some events (?)
 * Account creation (?)
