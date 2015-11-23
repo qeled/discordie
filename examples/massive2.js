@@ -14,6 +14,7 @@
 // stop
 
 var fs = require('fs');
+var path = require('path');
 var child_process = require('child_process');
 
 var Discordie;
@@ -136,10 +137,21 @@ client.Dispatcher.on(Discordie.Events.VOICE_CONNECTED, (data) => {
 });
 
 function getConverter(args) {
-	var binaries = ['ffmpeg', 'avconv'];
+	var binaries = [
+		'ffmpeg',
+		'ffmpeg.exe',
+		'avconv',
+		'avconv.exe'
+	];
+
+	var paths = process.env.PATH.split(path.delimiter).concat(["."]);
+
 	for (var name of binaries) {
-		var binary = child_process.spawn(name, args);
-		if (!binary.error) return binary;
+		for (var p of paths) {
+			var binary = p + path.sep + name;
+			if (!fs.existsSync(binary)) continue;
+			return child_process.spawn(name, args);
+		}
 	}
 	return null;
 }
