@@ -1,6 +1,6 @@
 "use strict";
 
-//// note: run "npm install fluent-ffmpeg" in this folder and install ffmpeg first
+//// note: install ffmpeg/avconv first
 
 // example bot
 
@@ -13,8 +13,8 @@
 // play -- plays test.mp3
 // stop
 
-var ffmpeg = require('fluent-ffmpeg');
 var fs = require('fs');
+var child_process = require('child_process');
 
 var Discordie;
 try { Discordie = require("../"); } catch(e) {}
@@ -135,6 +135,15 @@ client.Dispatcher.on(Discordie.Events.VOICE_CONNECTED, (data) => {
 	//play();
 });
 
+function getConverter(args) {
+	var binaries = ['ffmpeg', 'avconv'];
+	for (var name of binaries) {
+		var binary = child_process.spawn(name, args);
+		if (!binary.error) return binary;
+	}
+	return null;
+}
+
 var stopPlaying = false;
 function play(voiceConnectionInfo) {
 	stopPlaying = false;
@@ -143,12 +152,16 @@ function play(voiceConnectionInfo) {
 	var bitDepth = 16;
 	var channels = 1;
 
-	var ff = new ffmpeg("test.mp3")
-		.native()
-		.format("s16le")
-		.audioFrequency(sampleRate)
-		.audioChannels(channels)
-		.pipe();
+	var ffmpeg = getConverter([
+		"-re",
+		"-i", "test.mp3",
+		"-f", "s16le",
+		"-ar", sampleRate,
+		"-ac", channels,
+		"-"
+	]);
+	if (!ffmpeg) return console.log("ffmpeg/avconv not found");
+	var ff = ffmpeg.stdout;
 
 	// note: discordie encoder does resampling if rate != 48000
 	var options = {
@@ -168,12 +181,7 @@ function play(voiceConnectionInfo) {
 		bitDepth / 8 *
 		channels;
 
-	var actuallyDecoding = false; // "fluent-ffmpeg" quirks
-	// fires 'readable' few times before actual data
-
-	ff.on('readable', function() {
-		if(actuallyDecoding) return;
-
+	ff.once('readable', function() {
 		if(!client.VoiceConnections.length) {
 			return console.log("Voice not connected");
 		}
@@ -186,17 +194,20 @@ function play(voiceConnectionInfo) {
         
 		// one encoder per voice connection
 		var encoder = voiceConnection.getEncoder(options);
+
+		const needBuffer = () => encoder.onNeedBuffer();
 		encoder.onNeedBuffer = function() {
 			var chunk = ff.read(readSize);
-			if(chunk) actuallyDecoding = true;
-			if(chunk === null || stopPlaying) return;
+			if (stopPlaying || ff.destroyed) return;
+			// delay the packet if no data buffered
+			if (!chunk) return setTimeout(needBuffer, options.frameDuration);
 			var sampleCount = readSize / channels / (bitDepth / 8);
 			encoder.enqueue(chunk, sampleCount);
 		};
-		encoder.onNeedBuffer();
+		needBuffer();
 	});
 
-	ff.on('end', () => setTimeout(play, 100, voiceConnectionInfo));
+	ff.once('end', () => setTimeout(play, 100, voiceConnectionInfo));
 }
 
 client.Dispatcher.onAny((type, args) => {
