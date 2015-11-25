@@ -110,7 +110,7 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
 		play();
 	}
 	if(e.message.content.indexOf("stop") == 0) {
-		stopPlaying = true;
+		stop();
 	}
 });
 client.Dispatcher.on(Discordie.Events.MESSAGE_UPDATE, (e) => {
@@ -154,6 +154,14 @@ function getConverter(args) {
 	return null;
 }
 
+var ffmpeg = null;
+function stop() {
+	stopPlaying = true;
+	if (!ffmpeg) return;
+	ffmpeg.kill();
+	ffmpeg = null;
+}
+
 var stopPlaying = false;
 function play(voiceConnectionInfo) {
 	stopPlaying = false;
@@ -162,7 +170,9 @@ function play(voiceConnectionInfo) {
 	var bitDepth = 16;
 	var channels = 1;
 
-	var ffmpeg = getConverter([
+	if (ffmpeg) ffmpeg.kill();
+
+	ffmpeg = getConverter([
 		"-re",
 		"-i", "test.mp3",
 		"-f", "s16le",
@@ -208,7 +218,7 @@ function play(voiceConnectionInfo) {
 		const needBuffer = () => encoder.onNeedBuffer();
 		encoder.onNeedBuffer = function() {
 			var chunk = ff.read(readSize);
-			if (stopPlaying || ff.destroyed) return;
+			if (stopPlaying || ff.destroyed) return stop();
 			// delay the packet if no data buffered
 			if (!chunk) return setTimeout(needBuffer, options.frameDuration);
 			var sampleCount = readSize / channels / (bitDepth / 8);
@@ -217,7 +227,10 @@ function play(voiceConnectionInfo) {
 		needBuffer();
 	});
 
-	ff.once('end', () => setTimeout(play, 100, voiceConnectionInfo));
+	ff.once('end', () => {
+		if (stopPlaying) return;
+		setTimeout(play, 100, voiceConnectionInfo)
+	});
 }
 
 client.Dispatcher.onAny((type, args) => {
