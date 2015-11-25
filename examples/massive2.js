@@ -4,8 +4,6 @@
 
 // example bot
 
-// audio decoding using "fluent-ffmpeg" (requires ffmpeg installed)
-
 // commands:
 // ping
 // vjoin <channelname> -- joins matching channel for current guild
