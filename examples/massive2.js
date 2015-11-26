@@ -181,6 +181,8 @@ function play(voiceConnectionInfo) {
 		"-"
 	], {stdio: ['pipe', 'pipe', 'ignore']});
 	if (!ffmpeg) return console.log("ffmpeg/avconv not found");
+
+	var _ffmpeg = ffmpeg;
 	var ff = ffmpeg.stdout;
 
 	// note: discordie encoder does resampling if rate != 48000
@@ -218,18 +220,23 @@ function play(voiceConnectionInfo) {
 		const needBuffer = () => encoder.onNeedBuffer();
 		encoder.onNeedBuffer = function() {
 			var chunk = ff.read(readSize);
-			if (stopPlaying || ff.destroyed) return stop();
+
+			if (_ffmpeg.killed) return;
+			if (stopPlaying) return stop();
+
 			// delay the packet if no data buffered
 			if (!chunk) return setTimeout(needBuffer, options.frameDuration);
+
 			var sampleCount = readSize / channels / (bitDepth / 8);
 			encoder.enqueue(chunk, sampleCount);
 		};
+
 		needBuffer();
 	});
 
 	ff.once('end', () => {
 		if (stopPlaying) return;
-		setTimeout(play, 100, voiceConnectionInfo)
+		setTimeout(play, 100, voiceConnectionInfo);
 	});
 }
 
