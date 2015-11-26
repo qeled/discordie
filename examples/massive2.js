@@ -134,7 +134,7 @@ client.Dispatcher.on(Discordie.Events.VOICE_CONNECTED, (data) => {
 	//play();
 });
 
-function getConverter(args) {
+function getConverter(args, options) {
 	var binaries = [
 		'ffmpeg',
 		'ffmpeg.exe',
@@ -148,7 +148,7 @@ function getConverter(args) {
 		for (var p of paths) {
 			var binary = p + path.sep + name;
 			if (!fs.existsSync(binary)) continue;
-			return child_process.spawn(name, args);
+			return child_process.spawn(name, args, options);
 		}
 	}
 	return null;
@@ -179,7 +179,7 @@ function play(voiceConnectionInfo) {
 		"-ar", sampleRate,
 		"-ac", channels,
 		"-"
-	]);
+	], {stdio: ['pipe', 'pipe', 'ignore']});
 	if (!ffmpeg) return console.log("ffmpeg/avconv not found");
 	var ff = ffmpeg.stdout;
 
