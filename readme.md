@@ -14,14 +14,13 @@ Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](htt
 * Direct messages
 * Voice encoding, sending, decoding and receiving
 (audio streaming example: [`examples/massive.js`](https://github.com/qeled/discordie/blob/master/examples/massive.js))
+* Local user profile (username change, statuses, avatars)
 * Multiserver voice support
 
 ## Mostly Implemented
 
 * Guild (server) and channel management API
  * No guild info editing yet
-* Local user profile (username change, statuses)
- * No proper API for uploading avatars and guild icons yet
 
 ## Planned
 
@@ -94,7 +93,7 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, (e) => {
 ## TODO
 
 * Stream interfaces for voice
-* Avatar/icon uploading
+* Guild editing
 * Partial object diffs on some events (?)
 * Account creation (?)
 * WebRTC transport implementation (?)
