@@ -14,13 +14,9 @@ Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](htt
 * Direct messages
 * Voice encoding, sending, decoding and receiving
 (audio streaming example: [`examples/massive.js`](https://github.com/qeled/discordie/blob/master/examples/massive.js))
+* Guild (server) and channel management API
 * Local user profile (username change, statuses, avatars)
 * Multiserver voice support
-
-## Mostly Implemented
-
-* Guild (server) and channel management API
- * No guild info editing yet
 
 ## Planned
 
@@ -39,61 +35,64 @@ Currently only inline documentation in files:
 var Discordie = require("discordie");
 var Events = Discordie.Events;
 
-var auth = {
-  email: "discordie@example.com",
-  password: ""
-};
-
 var client = new Discordie();
 
-function connect() { client.connect(auth); }
-connect();
-
-client.Dispatcher.on(Events.DISCONNECTED, (e) => {
-  console.log("Reconnecting");
-  setTimeout(connect, 5000);
+client.connect({
+  email: "discordie@example.com",
+  password: ""
 });
 
-client.Dispatcher.on(Events.GATEWAY_READY, (e) => {
+client.Dispatcher.on(Events.GATEWAY_READY, e => {
   console.log("Connected as: " + client.User.username);
 });
 
-client.Dispatcher.on(Events.MESSAGE_CREATE, (e) => {
-  console.log("new message: ");
-  console.log(JSON.stringify(e.message, null, "  "));
-
-  if (e.message.content == "ping") {
+client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
+  if (e.message.content == "ping")
     e.message.channel.sendMessage("pong");
-  }
 });
 ```
 
-## Links
+## Related
 
-##### .NET:
-[Discord.Net](https://github.com/RogueException/Discord.Net)
+**.NET**:
+[RogueException/**Discord.Net**](https://github.com/RogueException/Discord.Net) ||
+[Luigifan/**DiscordSharp**](https://github.com/Luigifan/DiscordSharp)
 
-[DiscordSharp](https://github.com/Luigifan/DiscordSharp)
+**Node.js**:
+[izy521/**discord.io**](https://github.com/izy521/discord.io) ||
+[hydrabolt/**discord.js**](https://github.com/hydrabolt/discord.js)
 
-##### Node.js
-[discord.io](https://github.com/izy521/node-discord)
+**Python**:
+[Rapptz/**discord.py**](https://github.com/Rapptz/discord.py)
 
-[discord.js](https://github.com/hydrabolt/discord.js)
+**Ruby**:
+[meew0/**discordrb**](https://github.com/meew0/discordrb)
 
-##### Java:
-[Discord4J](https://github.com/nerd/Discord4J)
+**Go**:
+[bwmarrin/**discordgo**](https://github.com/bwmarrin/discordgo) ||
+[gdraynz/**go-discord**](https://github.com/gdraynz/go-discord) ||
+[Xackery/**discord**](https://github.com/Xackery/discord)
 
-##### Python
-[discord.py](https://github.com/Rapptz/discord.py)
+**Rust**:
+[SpaceManiac/**discord-rs**](https://github.com/SpaceManiac/discord-rs)
 
-##### Ruby
-[discordrb](https://github.com/meew0/discordrb)
+**PHP**:
+[teamreflex/**DiscordPHP**](https://github.com/teamreflex/DiscordPHP) ||
+[Cleanse/**discord-hypertext**](https://github.com/Cleanse/discord-hypertext)
+
+**Scala**:
+[eaceaser/**discord-akka**](https://github.com/eaceaser/discord-akka)
+
+**Java**:
+[nerd/**Discord4J**](https://github.com/nerd/Discord4J)
+
+
 
 
 ## TODO
 
 * Stream interfaces for voice
-* Guild editing
+* Avatar/icon uploading
 * Partial object diffs on some events (?)
 * Account creation (?)
 * WebRTC transport implementation (?)
