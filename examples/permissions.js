@@ -212,11 +212,10 @@ Dispatcher.on(Events.MESSAGE_CREATE, (e) => {
 });
 
 Dispatcher.onAny((type, e) => {
-	console.log("\nevent " + type);
-
 	var ignore = [
 		"READY",
 		"GATEWAY_READY",
+		"ANY_GATEWAY_READY",
 		"GATEWAY_DISPATCH",
 		"PRESENCE_UPDATE",
 		"TYPING_START",
@@ -225,5 +224,6 @@ Dispatcher.onAny((type, e) => {
 		return console.log("<" + type + ">");
 	}
 
+	console.log("\nevent " + type);
 	return console.log("args " + JSON.stringify(e));
 });

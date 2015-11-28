@@ -240,13 +240,19 @@ function play(voiceConnectionInfo) {
 	});
 }
 
-client.Dispatcher.onAny((type, args) => {
-	console.log("\nevent "+type);
-
-	if(args.type == "READY" || args.type == "READY" || type == "GATEWAY_READY") {
-		console.log("e "+type+" READY");
-		return;
+client.Dispatcher.onAny((type, e) => {
+	var ignore = [
+		"READY",
+		"GATEWAY_READY",
+		"ANY_GATEWAY_READY",
+		"GATEWAY_DISPATCH",
+		"PRESENCE_UPDATE",
+		"TYPING_START",
+	];
+	if(ignore.find(t => (t == type || t == e.type))) {
+		return console.log("<" + type + ">");
 	}
 
-	console.log("args "+JSON.stringify(args));
+	console.log("\nevent " + type);
+	return console.log("args " + JSON.stringify(e));
 });

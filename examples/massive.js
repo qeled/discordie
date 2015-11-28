@@ -162,7 +162,7 @@ function play(voiceConnectionInfo) {
 			pcmfmt.bitDepth / 8 *
 			pcmfmt.channels;
 
-		mp3decoder.on('readable', function() {
+		mp3decoder.once('readable', function() {
 			if(!client.VoiceConnections.length) {
 				return console.log("Voice not connected");
 			}
@@ -184,18 +184,23 @@ function play(voiceConnectionInfo) {
 			encoder.onNeedBuffer();
 		});
 
-		// restarting decoder without setTimeout causes glitches?
-		mp3decoder.on('end', () => setTimeout(play, 100, voiceConnectionInfo));
+		mp3decoder.once('end', () => setTimeout(play, 100, voiceConnectionInfo));
 	}
 }
 
-client.Dispatcher.onAny((type, args) => {
-	console.log("\nevent "+type);
-
-	if(args.type == "READY" || args.type == "READY" || type == "GATEWAY_READY") {
-		console.log("e "+type+" READY");
-		return;
+client.Dispatcher.onAny((type, e) => {
+	var ignore = [
+		"READY",
+		"GATEWAY_READY",
+		"ANY_GATEWAY_READY",
+		"GATEWAY_DISPATCH",
+		"PRESENCE_UPDATE",
+		"TYPING_START",
+	];
+	if(ignore.find(t => (t == type || t == e.type))) {
+		return console.log("<" + type + ">");
 	}
 
-	console.log("args "+JSON.stringify(args));
+	console.log("\nevent " + type);
+	return console.log("args " + JSON.stringify(e));
 });
