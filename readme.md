@@ -18,10 +18,6 @@ Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](htt
 * Local user profile (username change, statuses, avatars)
 * Multiserver voice support
 
-## Planned
-
-* Stream interfaces
-
 ## Documentation
 
 Currently only inline documentation in files:
@@ -92,7 +88,6 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
 ## TODO
 
 * Stream interfaces for voice
-* Avatar/icon uploading
 * Partial object diffs on some events (?)
 * Account creation (?)
 * WebRTC transport implementation (?)
