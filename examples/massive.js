@@ -148,7 +148,7 @@ function play(voiceConnectionInfo) {
 		var options = {
 			frameDuration: 60,
 			sampleRate: pcmfmt.sampleRate,
-			channels: 2,
+			channels: pcmfmt.channels,
 			float: false,
 
 			multiThreadedVoice: true
@@ -175,13 +175,20 @@ function play(voiceConnectionInfo) {
 
 			// one encoder per voice connection
 			var encoder = voiceConnection.getEncoder(options);
+
+			const needBuffer = () => encoder.onNeedBuffer();
 			encoder.onNeedBuffer = function() {
 				var chunk = mp3decoder.read(readSize);
-				if(chunk === null || stopPlaying) return;
+				if (stopPlaying) return;
+
+				// delay the packet if no data buffered
+				if (!chunk) return setTimeout(needBuffer, options.frameDuration);
+
 				var sampleCount = readSize / pcmfmt.channels / (pcmfmt.bitDepth / 8);
 				encoder.enqueue(chunk, sampleCount);
 			};
-			encoder.onNeedBuffer();
+
+			needBuffer();
 		});
 
 		mp3decoder.once('end', () => setTimeout(play, 100, voiceConnectionInfo));
