@@ -1,6 +1,6 @@
 {
   "name": "discordie",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A Node.js interface for the Discord API.",
   "main": "./lib/index.js",
   "scripts": {
