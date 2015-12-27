@@ -6,7 +6,7 @@ A Node.js module providing a set of interfaces to interact with Discord API.
 
 **No native modules required to work with audio. Choose from precompiled (default) or `node-opus` (optional).**
 
-Join [#node_discordie](https://discord.gg/0SBTUU1wZTWO5NWd) in [Discord API](https://discord.gg/0SBTUU1wZTWO5NWd).
+Join [#node_discordie](https://discord.gg/0SBTUU1wZTYM8nHo) in [Discord API](https://discord.gg/0SBTUU1wZTYM8nHo).
 
 ## Fully Implemented
 
