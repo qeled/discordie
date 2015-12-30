@@ -82,7 +82,8 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
 [eaceaser/**discord-akka**](https://github.com/eaceaser/discord-akka)
 
 **Java**:
-[nerd/**Discord4J**](https://github.com/nerd/Discord4J)
+[austinv11/**Discord4J**](https://github.com/austinv11/Discord4J) ||
+[DV8FromTheWorld/**JDA**](https://github.com/DV8FromTheWorld/JDA/)
 
 
 
