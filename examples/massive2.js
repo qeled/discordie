@@ -126,7 +126,7 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_DELETE, (e) => {
 });
 
 client.Dispatcher.on(Discordie.Events.VOICE_CONNECTED, (data) => {
-	if(client.voiceConnections.length <= 0) {
+	if(client.VoiceConnections.length <= 0) {
 		return console.log("Voice not connected");
 	}
 
