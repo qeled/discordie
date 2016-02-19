@@ -3,6 +3,8 @@
 
 var native = require("./libopus_libspeexdsp");
 
+var OPUS_SET_BITRATE_REQUEST = 4002;
+
 var OpusApplication;
 (function (OpusApplication) {
     OpusApplication[OpusApplication["VoIP"] = 2048] = "VoIP";
@@ -70,6 +72,13 @@ var OpusEncoder = (function () {
         this.out_ptr = native._malloc(this.out_bytes);
         this.out_buf = native.HEAPU8.subarray(this.out_ptr, this.out_ptr + this.out_bytes);
     }
+    OpusEncoder.prototype.set_bitrate = function (bitrate) {
+        var bitrate_ptr = native.allocate(4, 'i32', native.ALLOC_STACK);
+        native.setValue(bitrate_ptr, bitrate, 'i32');
+        var ret = native._opus_encoder_ctl(this.handle, OPUS_SET_BITRATE_REQUEST, bitrate_ptr);
+        if (ret < 0)
+            throw 'opus_encoder_ctl failed: ' + ret;
+    };
     OpusEncoder.prototype.encode = function (pcm) {
         var output = [];
         var pcm_off = 0;
