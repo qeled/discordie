@@ -36,8 +36,12 @@ var Events = Discordie.Events;
 var client = new Discordie();
 
 client.connect({
-  email: "discordie@example.com",
-  password: ""
+  // **Deprecated** old way: 
+  // email: "discordie@example.com",
+  // password: ""
+
+  // Official bot API:
+  token: ""
 });
 
 client.Dispatcher.on(Events.GATEWAY_READY, e => {
@@ -91,7 +95,5 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
 ## TODO
 
 * Stream interfaces for voice
-* Partial object diffs on some events (?)
-* Account creation (?)
 * WebRTC transport implementation (?)
 
