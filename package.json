@@ -21,11 +21,11 @@
   "author": "qeled",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "ecma-nacl": "^2.2.0",
     "pako": "^0.2.8",
     "requireindex": "^1.1.0",
     "ssl-root-cas": "^1.1.10",
     "superagent": "^1.4.0",
+    "tweetnacl": "^0.14.1",
     "ws": "^0.8.0"
   }
 }
