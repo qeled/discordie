@@ -1,8 +1,45 @@
 # Discordie changelog
 
+## 2016-03-25, Version 0.4.0
+
+#### Notable changes:
+
+  - Fully migrated to bot multiserver voice API (user accounts no longer can
+    connect to more than one guild concurrently);
+  - Improved voice disconnect handling logic: more info in `VOICE_DISCONNECT`
+    event docs (no breaking changes);
+  - Presence updates for friend lists are no longer dispatched over
+    `PRESENCE_UPDATE` event;
+  - *(Discord-side)* `Invites.accept` no longer works on bot accounts.
+
+#### New:
+
+  - Exposed `user.bot` boolean property;
+  - Implemented offline guild members requesting:
+   `Users.fetchMembers(singleGuildOrGuildsArray)`;
+  - Alternative methods for deleting/editing messages by id:
+    - `Messages.editMessage(content, messageId, channelId)`;
+    - `Messages.deleteMessage(messageId, channelId)`;
+  - Pending voice connections can now be cancelled with `.leave()` on the same
+    channel.
+
+#### Fixes:
+
+  - `GUILD_MEMBER_REMOVE` is now handled correctly and actually removes
+    members from cache;
+  - Fixed `IGuild.getPruneEstimate()` and `IGuild.pruneMembers()`;
+  - Encoder states are no longer created in proxy mode;
+  - Voice connections now properly disconnect on `GUILD_UNAVAILABLE`;
+  - Fixed `IVoiceChannel.joined` reporting incorrect state for pending
+    connections.
+
+#### Performance:
+
+  - Improved performance for voice encryption and RTP muxing.
+
 ## 2016-03-09, Version 0.3.0
 
-Notable changes:
+#### Notable changes:
 
   - Memory and CPU usage has been reduced greatly;
   - Implemented caching of member interfaces;
@@ -13,7 +50,7 @@ Notable changes:
   - Interfaces can now be properly formatted (inspected) using `console.log`
     and `util.inspect`;
 
-Fixes:
+#### Fixes:
 
   - Fix voice state tracking on `READY` for clients in multiple servers;
   - Cache voice server address on connect and no longer attempt to resolve
@@ -23,11 +60,11 @@ Fixes:
 
 ## 2016-02-27, Version 0.2.1
 
-Performance:
+#### Performance:
 
   - Improve performance of `<Collection>.get`;
 
-Fixes:
+#### Fixes:
 
   - Fix voice leave or disconnect crashing the library when called for voice
     connections on secondary gateways;
