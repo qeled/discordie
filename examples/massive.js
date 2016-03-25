@@ -149,9 +149,7 @@ function play(voiceConnectionInfo) {
 			frameDuration: 60,
 			sampleRate: pcmfmt.sampleRate,
 			channels: pcmfmt.channels,
-			float: false,
-
-			multiThreadedVoice: true
+			float: false
 		};
 
 		const frameDuration = 60;

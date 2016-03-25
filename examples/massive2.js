@@ -190,9 +190,7 @@ function play(voiceConnectionInfo) {
 		frameDuration: 60,
 		sampleRate: sampleRate,
 		channels: channels,
-		float: false,
-
-		multiThreadedVoice: true
+		float: false
 	};
 
 	const frameDuration = 60;
