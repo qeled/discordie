@@ -41,6 +41,21 @@ const Landing = React.createClass({
           </div>
         </div>
 
+        <div class="tm-landing-section tm-landing-section-reasons">
+          <div class="uk-container uk-container-center uk-text-center">
+            <h2 class="uk-contrast uk-bold">
+              Give it a try if you like:
+            </h2>
+
+            <ul>
+              <li>Object-oriented JavaScript</li>
+              <li>Promises</li>
+              <li>Latest features</li>
+              <li>Having control over your code</li>
+            </ul>
+          </div>
+        </div>
+
         <div class="tm-landing-section tm-landing-section-secondary">
           <div class="uk-container uk-container-center uk-text-center">
             <h1 class="uk-heading-large">Get Started</h1>

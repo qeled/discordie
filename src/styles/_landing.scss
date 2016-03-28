@@ -68,3 +68,24 @@
     box-shadow: 0 0 8px 0px hsla(0, 0%, 80%, .5);
   }
 }
+
+.tm-landing-section-reasons {
+  background: $color-landing-section-reasons;
+  color: #fff;
+
+  ul {
+    width: 310px;
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: 400;
+    display: inline-block;
+    list-style-type: none;
+    text-align: left;
+
+    li:before {
+      font-family: 'FontAwesome';
+      content: "\f00c"; /* fa-check */
+      margin: 7px;
+    }
+  }
+}
