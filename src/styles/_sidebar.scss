@@ -1,0 +1,82 @@
+// sidebar
+
+.tm-nav > li > a .doc-memberof {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-family: $code-font-family;
+  font-weight: normal;
+  font-size: 13px;
+  color: #444;
+}
+
+.tm-nav > li > a {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: $color-link-sidebar;
+}
+.tm-nav > li > a:hover {
+  background: #f8f8f8;
+}
+
+.tm-nav > li.uk-active {
+  background: #fafafa;
+  border-left: 2px solid $color-brand;
+  margin-left: -2px;
+}
+.tm-nav > li:not(.uk-active) > a:hover {
+  background: #fafafa;
+  border-left: 2px solid #ddd;
+  margin-left: -2px;
+}
+
+// search input
+
+.tm-sidebar .tm-search {
+  margin-bottom: 10px;
+}
+
+.tm-search a:hover > .icon {
+  color: $color-brand;
+}
+.tm-search .icon {
+  padding: 0;
+  margin: 0;
+  color: #ddd;
+}
+.tm-search .icon:before {
+  position: relative;
+  top: -25px;
+  left: -6px;
+  float: right;
+  font-family: 'FontAwesome';
+  font-style: normal;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+}
+
+.tm-search .icon-search:before {
+  content: "\f002";
+}
+
+.tm-search .icon-x:before {
+  content: "\f057";
+}
+
+.tm-search > input[type="text"] {
+  padding: 2px 30px 2px 14px;
+  border-radius: 18px;
+  font-size: 14px;
+  transition: all linear 0.1s;
+  width: 100%;
+}
+.tm-search > input[type="text"]:focus {
+  background: #fff;
+  border-color: $color-brand;
+}
+
+$placeholder-color: #ddd;
+.tm-search > input::-webkit-input-placeholder { color: $placeholder-color; }
+.tm-search > input::-moz-placeholder { color: $placeholder-color; }
+.tm-search > input:-moz-placeholder { color: $placeholder-color; }
+.tm-search > input:-ms-input-placeholder { color: $placeholder-color; }

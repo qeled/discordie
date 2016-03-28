@@ -1,0 +1,1 @@
+node parse && cp docs.json ../src/data/docs.json

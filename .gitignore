@@ -1,0 +1,14 @@
+.DS_Store
+
+*.log
+
+.idea
+.ignore
+node_modules
+public
+build.*
+dev*
+webpackinfo
+
+src/data/docs.json
+generator/docs.json

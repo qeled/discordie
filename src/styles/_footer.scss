@@ -1,0 +1,31 @@
+footer {
+  background: #252525;
+  padding: 90px;
+  color: #fff;
+}
+footer {
+  .tm-footer-title {
+    color: #ddd;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 15px 0;
+  }
+
+  div, span {
+    font-weight: 600;
+    color: #666;
+  }
+  a {
+    color: #fff !important;
+    font-weight: 600;
+    opacity: 0.3;
+    transition: all 0.2s;
+  }
+  a:hover {
+    opacity: 1;
+    text-decoration: none;
+  }
+  .uk-subnav-line > :nth-child(n+2):before {
+    border: 1px solid #666;
+  }
+}

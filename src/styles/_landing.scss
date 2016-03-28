@@ -1,0 +1,70 @@
+.tm-landing-section {
+  background: $color-brand;
+  color: #fff;
+  padding: 90px 0;
+}
+
+.tm-landing-section {
+  .tm-pad-bottom {
+    margin-bottom: 20px;
+  }
+  .tm-brand-name {
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 42px;
+  }
+
+  .tm-installation {
+    pre {
+      display: inline-block;
+      padding: 7px 12px;
+      background: #252525;
+      border: 1px solid #000;
+      color: #a6e22e;
+    }
+  }
+
+  .tm-example {
+    pre {
+      text-align: left;
+      display: inline-block;
+      @media screen and (max-width: 540px) {
+        code {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .tm-landing-button {
+    display: inline-block;
+    border-bottom: 2px solid $color-brand;
+    background: #fff;
+    padding: 10px 25px;
+    border-radius: 3px;
+    color: $color-brand;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .2s ease;
+    margin: 10px;
+  }
+
+  .tm-landing-button:hover {
+    box-shadow: 0 0 8px 0px hsla(0, 0%, 100%, .5);
+    /* border-bottom: 2px solid hsla(205,100%,75%,1); */
+    @include transform(translate(0px, -1px));
+  }
+}
+
+.tm-landing-section-secondary {
+  background: #f3f3f3;
+  color: #444;
+
+  .tm-landing-button {
+    border-bottom: 2px solid hsla(0, 0%, 70%, .5);
+  }
+
+  .tm-landing-button:hover {
+    box-shadow: 0 0 8px 0px hsla(0, 0%, 80%, .5);
+  }
+}

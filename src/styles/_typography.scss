@@ -1,0 +1,46 @@
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=latin,latin-ext);
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family;
+}
+
+span.monospace, div.monospace, td.monospace {
+  font-family: $code-font-family;
+  font-size: 16px;
+}
+$inconsolata-adjust: 4px;
+h1.monospace { font-size: $base-h1-font-size + $inconsolata-adjust; }
+h2.monospace { font-size: $base-h2-font-size + $inconsolata-adjust; }
+h3.monospace { font-size: $base-h3-font-size + $inconsolata-adjust; }
+h4.monospace { font-size: $base-h4-font-size + $inconsolata-adjust; }
+h5.monospace { font-size: $base-h5-font-size + $inconsolata-adjust; }
+h6.monospace { font-size: $base-h6-font-size + $inconsolata-adjust; }
+h1.monospace, h2.monospace, h3.monospace,
+h4.monospace, h5.monospace, h6.monospace {
+  font-family: $code-font-family;
+}
+
+h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+div .paragraph:not(:empty) {
+  padding-bottom: 10px;
+}
+
+ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+pre {
+  margin-top: 5px;
+}
+
+em {
+  color: #d00;
+}
+
+blockquote {
+  font-style: normal;
+}

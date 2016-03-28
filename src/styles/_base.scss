@@ -1,0 +1,22 @@
+html, body, button, input {
+  text-rendering: optimizeLegibility;
+}
+html, body {
+  background: #252525;
+}
+
+a {
+  color: $color-link;
+  cursor: pointer !important;
+}
+a:hover {
+  color: darken($color-link, 5%);
+}
+.toc > a {
+  color: #444;
+}
+
+.tm-middle {
+  padding: 40px 0;
+  background: #fff;
+}

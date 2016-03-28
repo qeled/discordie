@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+
+  "env": {
+    "node": true
+  },
+
+  "rules": {
+    "indent": [2, 2],
+    "no-underscore-dangle": [0],
+    "space-after-keywords": [2],
+    "space-infix-ops": [2],
+    "no-empty": [2],
+    "no-extra-semi": [2],
+    "no-unreachable": [2],
+    "valid-typeof": [2],
+    "no-fallthrough": [2],
+    "no-multi-spaces": [2],
+    "prefer-arrow-callback": [2]
+  }
+}

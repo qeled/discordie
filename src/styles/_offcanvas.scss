@@ -1,0 +1,47 @@
+#doc-offcanvas > .uk-offcanvas-bar {
+  .tm-nav > li > a .doc-memberof {
+    color: #a8a8a8;
+  }
+
+  .tm-nav > li > a {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #ccc;
+  }
+
+  .tm-nav > li.uk-active > a {
+    box-shadow: inset 2px 0 0 $color-brand;
+    background: #2a2a2a;
+  }
+  .tm-nav > li:not(.uk-active) > a:hover {
+    box-shadow: inset 2px 0 0 #666;
+    background: #2a2a2a;
+  }
+
+  .tm-search a:hover > .icon {
+    color: #fff;
+  }
+  .tm-search .icon {
+    padding: 0;
+    margin: 0;
+    color: #666;
+  }
+  .tm-search {
+    margin: 15px;
+  }
+  .tm-search > input {
+    background: hsla(0, 0%, 100%, .05);
+    border: 1px solid rgba(0, 0, 0, .28);
+    border-radius: 4px;
+    padding: 2px 30px 2px 10px;
+    color: #fff;
+  }
+
+  $placeholder-color: #666a6e;
+  .tm-search > .icon-search:before { color: $placeholder-color; }
+  .tm-search > input::-webkit-input-placeholder { color: $placeholder-color; }
+  .tm-search > input::-moz-placeholder { color: $placeholder-color; }
+  .tm-search > input:-moz-placeholder { color: $placeholder-color; }
+  .tm-search > input:-ms-input-placeholder { color: $placeholder-color; }
+}

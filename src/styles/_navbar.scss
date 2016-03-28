@@ -1,0 +1,46 @@
+.tm-navbar {
+  padding: 8px 0;
+  background: $color-brand;
+}
+
+.tm-navbar .uk-navbar-brand {
+  font-weight: 700;
+  line-height: 40px;
+  font-size: 18px;
+  color: #fff;
+}
+.tm-navbar .uk-navbar-nav > li > a {
+  padding: 0 10px;
+  color: #fff;
+  font-weight: 600;
+  opacity: 0.6;
+  transition: opacity 200ms;
+  font-size: 13px;
+  font-family: $font-family;
+  text-decoration: none;
+}
+.tm-navbar .uk-navbar-nav > li > a:active,
+.tm-navbar .uk-navbar-nav > li > a:hover,
+.tm-navbar .uk-navbar-nav > li > a:focus,
+.tm-navbar .uk-navbar-nav > li.uk-active > a {
+  background: transparent;
+}
+.tm-navbar .uk-navbar-nav > li > a:hover,
+.tm-navbar .uk-navbar-nav > li.uk-active > a {
+  opacity: 1;
+}
+
+.uk-navbar-toggle,
+.uk-navbar-toggle:hover,
+.uk-navbar-toggle:focus {
+  color: #fff;
+}
+
+.tm-navbar .tm-github {
+  display: inline-block;
+  line-height: 40px;
+}
+.tm-navbar .tm-github > iframe {
+  height: 20px;
+  width: 85px;
+}

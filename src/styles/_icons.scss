@@ -1,0 +1,27 @@
+i.doc-icon {
+  font-size: 16px;
+  width: 16px;
+  font-family: 'FontAwesome';
+  font-style: normal;
+  margin-right: 10px;
+}
+
+$fa-icon-link:   "\f0c1";
+$fa-icon-source: "\f016";
+i.icon-link:before { content: $fa-icon-link; }
+i.icon-source:before { content: $fa-icon-source; }
+
+span.doc-icon-links {
+  margin-left: -52px;
+  visibility: hidden;
+}
+span.doc-icon-links > a {
+  color: #ddd;
+  text-decoration: none;
+}
+span.doc-icon-links > a:hover {
+  color: #444;
+}
+.doc-prop-name:hover > span.doc-icon-links {
+  visibility: inherit;
+}

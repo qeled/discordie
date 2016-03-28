@@ -1,0 +1,1 @@
+node parse && copy docs.json ..\src\data\docs.json

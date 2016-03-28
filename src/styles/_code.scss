@@ -1,0 +1,94 @@
+pre {
+  padding: 4px;
+  background: #f8f8f8;
+  font: 15px/16px $codeblock-font-family;
+  color: #666;
+  -moz-tab-size: 4;
+  tab-size: 4;
+  overflow: auto;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  font: 15px/16px $codeblock-font-family;
+}
+
+:not(pre) > code,
+:not(pre) > kbd,
+:not(pre) > samp {
+  font-size: inherit;
+  font-family: $code-font-family;
+  /* color: #d05; */
+  color: #444;
+  /* white-space: nowrap; */
+  white-space: inherit;
+  padding: 2px 4px;
+  border-radius: 2px;
+  background: #f8f8f8;
+}
+
+.badge {
+  font-family: $code-font-family;
+  display: inline-block;
+  padding: 0px 5px;
+  margin-right: 5px;
+  background: #00a8e6;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 15px;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+.badge-property {
+  background-color: #82bb42;
+}
+.badge-getter {
+  background-color: #82bb42;
+}
+.badge-method {
+  background-color: #009dd8;
+}
+
+/* disable weird italic hljs comments */
+.hljs-comment, .hljs-quote {
+  font-style: normal !important;
+}
+
+.monospace.toc {
+  font-size: 15px;
+}
+.doc-definition {
+  border-left: solid 3px #eee;
+  padding-left: 15px;
+}
+.doc-no-description {
+  color: #aaa;
+}
+
+table.doc-parameters {
+  text-align: left;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px #ddd;
+  border-collapse: collapse;
+}
+table.doc-parameters > thead {
+  background: $color-brand;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+}
+table.doc-parameters > thead > tr > th,
+table.doc-parameters > tbody > tr > td {
+  padding: 8px;
+}
+table.doc-parameters > tbody > tr:nth-of-type(2n+1) {
+  background-color: #f5f5f5;
+}
