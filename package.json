@@ -1,7 +1,7 @@
 {
   "name": "discordie",
   "version": "0.4.1",
-  "description": "A Node.js interface for the Discord API.",
+  "description": "A Node.js module for interfacing with the Discord API.",
   "main": "./lib/index.js",
   "scripts": {
     "test": "node ./tests/index.js"
@@ -27,5 +27,9 @@
     "superagent": "^1.4.0",
     "tweetnacl": "^0.14.1",
     "ws": "^0.8.0"
+  },
+  "engineStrict": true,
+  "engines": {
+    "node" : ">=4.0.0"
   }
 }
