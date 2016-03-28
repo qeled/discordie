@@ -36,11 +36,12 @@
   color: #fff;
 }
 
-.tm-navbar .tm-github {
+.tm-navbar .tm-navbar-aux-button {
   display: inline-block;
   line-height: 40px;
+  margin: 0 5px;
 }
-.tm-navbar .tm-github > iframe {
+.tm-navbar .tm-navbar-aux-button > iframe {
   height: 20px;
   width: 85px;
 }

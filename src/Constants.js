@@ -1,3 +1,5 @@
+export const DISCORD_INVITE_BADGE = "https://img.shields.io/badge/Discord-Join-738bd7.svg?style=flat-square";
+export const DISCORD_INVITE = "https://discord.gg/0SBTUU1wZTYM8nHo";
 export const GITHUB_STAR_FRAME = "https://ghbtns.com/github-btn.html?user=qeled&repo=discordie&type=star&count=true";
 export const REPO_ROOT = "https://github.com/qeled/discordie/tree/master";
 
