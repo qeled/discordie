@@ -1,6 +1,10 @@
 # Discordie
 
+[![npm](https://img.shields.io/npm/dm/discordie.svg)](https://www.npmjs.com/package/discordie)
+
 A Node.js module providing a set of interfaces to interact with Discord API.
+
+#### [**Documentation**](http://qeled.github.io/discordie/)
 
 **Requires at least Node.js 4.0.0.**
 
@@ -22,9 +26,13 @@ Join [#node_discordie](https://discord.gg/0SBTUU1wZTYM8nHo) in [Discord API](htt
 
 ## Documentation
 
-Currently only inline documentation in files:
+http://qeled.github.io/discordie/
+
+Mirrors inline documentation in files:
 * `lib/interfaces/*.js`
 * `lib/models/*.js`
+* `lib/voice/*.js`
+* `lib/Constants.js`
 * `lib/index.js`
 
 ## Example
