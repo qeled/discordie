@@ -46,7 +46,6 @@ const PropertyList = React.createClass({
       <div>
         {title}
         <ul>{toc}</ul>
-        {list.length ? <br/> : ""}
       </div>
     );
   }
