@@ -6,12 +6,17 @@ import Docs from '../../lib/Docs.js';
 
 import Markdown from '../../lib/Markdown.js';
 
-const STANDARD_TYPES = {};
-const LOCAL_TYPES = {};
-for (const type of JS.StandardObjects) {
-  STANDARD_TYPES[type] = JS.MDN_PATH + type;
-  STANDARD_TYPES[type.toLowerCase()] = JS.MDN_PATH + type;
+const EXTERNAL_TYPES = {};
+function addExternal(docRoot, type, docPath) {
+  EXTERNAL_TYPES[type] = docRoot + docPath;
+  EXTERNAL_TYPES[type.toLowerCase()] = docRoot + docPath;
 }
+JS.StandardObjects.forEach(type => addExternal(JS.MDN_PATH, type, type));
+Object.keys(JS.NodeObjects).forEach(type =>
+  addExternal(JS.NODE_DOCS_PATH, type, JS.NodeObjects[type])
+);
+
+const LOCAL_TYPES = {};
 const local = Docs.groups.all.filter(e => /interface|class|event/.test(e.kind));
 for (const {name} of local) {
   LOCAL_TYPES[name] = "/docs/" + name;
@@ -27,11 +32,11 @@ const TYPE_RENDERER = Markdown.parserFor({
       return {content: (capture[0] || '').trim()};
     },
     react(node, output, state) {
-      const standard = STANDARD_TYPES[node.content];
+      const external = EXTERNAL_TYPES[node.content];
       const local = LOCAL_TYPES[node.content];
-      if (standard) {
+      if (external) {
         return (
-          <a href={standard}
+          <a href={external}
              target="_blank"
              key={state.key}>
             {node.content}

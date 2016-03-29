@@ -96,5 +96,16 @@ export const JS = {
     "Iterator",
     "ParallelArray",
     "StopIteration"
-  ]
+  ],
+
+  NODE_DOCS_PATH: "https://nodejs.org/api/",
+  NodeObjects: {
+    "Buffer": "buffer.html",
+    "EventEmitter": "events.html",
+    "ReadableStream": "stream.html",
+    "WritableStream": "stream.html",
+    "TransformStream": "stream.html",
+    "DuplexStream": "stream.html",
+    "PassThroughStream": "stream.html"
+  }
 };
