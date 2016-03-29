@@ -26,6 +26,9 @@ const SearchBar = React.createClass({
     return {search: "", searchResults: {}};
   },
   clearSearch() {
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+    }
     this.refs["searchInput"].value = "";
     this._updateSearchState(this.getInitialState());
   },
