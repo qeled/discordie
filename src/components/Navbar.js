@@ -4,7 +4,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 import LocationChangeListenerMixin from '../mixins/LocationChangeListenerMixin.js';
 
-import {GITHUB_STAR_FRAME, DISCORD_INVITE, DISCORD_INVITE_BADGE} from '../Constants.js';
+import {GITHUB_STAR_FRAME, DISCORD_INVITE} from '../Constants.js';
 
 const navlinks = [
   {link: "/", name: "Home"},
@@ -66,7 +66,7 @@ const Navbar = React.createClass({
           <div class="uk-navbar-flip uk-hidden-small">
             <div class="tm-navbar-aux-button">
               <a href={DISCORD_INVITE} target="_blank" class="uk-margin">
-                <img src={DISCORD_INVITE_BADGE}
+                <img src={require("../images/discord-join-738bd7.svg")}
                      alt="Join #node_discordie in [Discord API]"/>
               </a>
             </div>
