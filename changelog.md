@@ -1,5 +1,13 @@
 # Discordie changelog
 
+## 2016-04-06, Version 0.4.2
+
+#### New:
+
+  - Gateway V4 support;
+  - Exposed `GATEWAY_RESUMED` event;
+  - Bans now can be added without member object - `IGuild.ban(user)`.
+
 ## 2016-03-25, Version 0.4.0
 
 #### Notable changes:
