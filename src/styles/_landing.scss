@@ -47,6 +47,7 @@
     text-decoration: none;
     transition: all .2s ease;
     margin: 10px;
+    @include transform(translate(0px, 0px));
   }
 
   .tm-landing-button:hover {
