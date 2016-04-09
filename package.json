@@ -21,6 +21,7 @@
   "author": "qeled",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "double-ended-queue": "^0.9.7",
     "pako": "^0.2.8",
     "requireindex": "^1.1.0",
     "ssl-root-cas": "^1.1.10",
