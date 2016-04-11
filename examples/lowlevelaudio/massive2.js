@@ -1,10 +1,8 @@
 "use strict";
 
-//// note: run "npm install lame" in this folder first
+//// note: install ffmpeg/avconv first
 
 // example bot
-
-// audio decoding using "lame"
 
 // commands:
 // ping
@@ -13,8 +11,9 @@
 // play -- plays test.mp3
 // stop
 
-var lame = require('lame');
 var fs = require('fs');
+var path = require('path');
+var child_process = require('child_process');
 
 var Discordie;
 try { Discordie = require("../"); } catch(e) {}
@@ -22,10 +21,7 @@ try { Discordie = require("discordie"); } catch(e) {}
 
 var client = new Discordie();
 
-var auth = {
-	email: "discordie@example.com",
-	password: ""
-};
+var auth = { token: "<BOT-TOKEN>" };
 try { auth = require("./auth"); } catch(e) {}
 
 function connect() { client.connect(auth); }
@@ -111,7 +107,7 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
 		play();
 	}
 	if(e.message.content.indexOf("stop") == 0) {
-		stopPlaying = true;
+		stop();
 	}
 });
 client.Dispatcher.on(Discordie.Events.MESSAGE_UPDATE, (e) => {
@@ -135,62 +131,108 @@ client.Dispatcher.on(Discordie.Events.VOICE_CONNECTED, (data) => {
 	//play();
 });
 
+function getConverter(args, options) {
+	var binaries = [
+		'ffmpeg',
+		'ffmpeg.exe',
+		'avconv',
+		'avconv.exe'
+	];
+
+	var paths = process.env.PATH.split(path.delimiter).concat(["."]);
+
+	for (var name of binaries) {
+		for (var p of paths) {
+			var binary = p + path.sep + name;
+			if (!fs.existsSync(binary)) continue;
+			return child_process.spawn(name, args, options);
+		}
+	}
+	return null;
+}
+
+var ffmpeg = null;
+function stop() {
+	stopPlaying = true;
+	if (!ffmpeg) return;
+	ffmpeg.kill();
+	ffmpeg = null;
+}
+
 var stopPlaying = false;
 function play(voiceConnectionInfo) {
 	stopPlaying = false;
 
-	var mp3decoder = new lame.Decoder();
-	mp3decoder.on('format', decode);
-	fs.createReadStream("test.mp3").pipe(mp3decoder);
+	var sampleRate = 48000;
+	var bitDepth = 16;
+	var channels = 1;
 
-	function decode(pcmfmt) {
-		// note: discordie encoder does resampling if rate != 48000
-		var options = {
-			frameDuration: 60,
-			sampleRate: pcmfmt.sampleRate,
-			channels: pcmfmt.channels,
-			float: false
+	if (ffmpeg) ffmpeg.kill();
+
+	ffmpeg = getConverter([
+		"-re",
+		"-i", "test.mp3",
+		"-f", "s16le",
+		"-ar", sampleRate,
+		"-ac", channels,
+		"-"
+	], {stdio: ['pipe', 'pipe', 'ignore']});
+	if (!ffmpeg) return console.log("ffmpeg/avconv not found");
+
+	var _ffmpeg = ffmpeg;
+	var ff = ffmpeg.stdout;
+
+	// note: discordie encoder does resampling if rate != 48000
+	var options = {
+		frameDuration: 60,
+		sampleRate: sampleRate,
+		channels: channels,
+		float: false
+	};
+
+	const frameDuration = 60;
+
+	var readSize =
+		sampleRate / 1000 *
+		options.frameDuration *
+		bitDepth / 8 *
+		channels;
+
+	ff.once('readable', function() {
+		if(!client.VoiceConnections.length) {
+			return console.log("Voice not connected");
+		}
+        
+		if(!voiceConnectionInfo) {
+			// get first if not specified
+			voiceConnectionInfo = client.VoiceConnections[0];
+		}
+		var voiceConnection = voiceConnectionInfo.voiceConnection;
+        
+		// one encoder per voice connection
+		var encoder = voiceConnection.getEncoder(options);
+
+		const needBuffer = () => encoder.onNeedBuffer();
+		encoder.onNeedBuffer = function() {
+			var chunk = ff.read(readSize);
+
+			if (_ffmpeg.killed) return;
+			if (stopPlaying) return stop();
+
+			// delay the packet if no data buffered
+			if (!chunk) return setTimeout(needBuffer, options.frameDuration);
+
+			var sampleCount = readSize / channels / (bitDepth / 8);
+			encoder.enqueue(chunk, sampleCount);
 		};
 
-		const frameDuration = 60;
+		needBuffer();
+	});
 
-		var readSize =
-			pcmfmt.sampleRate / 1000 *
-			options.frameDuration *
-			pcmfmt.bitDepth / 8 *
-			pcmfmt.channels;
-
-		mp3decoder.once('readable', function() {
-			if(!client.VoiceConnections.length) {
-				return console.log("Voice not connected");
-			}
-
-			if(!voiceConnectionInfo) {
-				// get first if not specified
-				voiceConnectionInfo = client.VoiceConnections[0];
-			}
-			var voiceConnection = voiceConnectionInfo.voiceConnection;
-
-			// one encoder per voice connection
-			var encoder = voiceConnection.getEncoder(options);
-
-			const needBuffer = () => encoder.onNeedBuffer();
-			encoder.onNeedBuffer = function() {
-				var chunk = mp3decoder.read(readSize);
-				if (stopPlaying) return;
-
-				// delay the packet if no data buffered
-				if (!chunk) return setTimeout(needBuffer, options.frameDuration);
-
-				var sampleCount = readSize / pcmfmt.channels / (pcmfmt.bitDepth / 8);
-				encoder.enqueue(chunk, sampleCount);
-			};
-
-			needBuffer();
-		});
-
-		mp3decoder.once('end', () => setTimeout(play, 100, voiceConnectionInfo));
-	}
+	ff.once('end', () => {
+		if (stopPlaying) return;
+		setTimeout(play, 100, voiceConnectionInfo);
+	});
 }
 
 client.Dispatcher.onAny((type, e) => {
