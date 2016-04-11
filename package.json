@@ -24,13 +24,12 @@
     "double-ended-queue": "^0.9.7",
     "pako": "^0.2.8",
     "requireindex": "^1.1.0",
-    "ssl-root-cas": "^1.1.10",
     "superagent": "^1.4.0",
     "tweetnacl": "^0.14.1",
     "ws": "^0.8.0"
   },
   "engineStrict": true,
   "engines": {
-    "node" : ">=4.0.0"
+    "node": ">=4.0.0"
   }
 }
