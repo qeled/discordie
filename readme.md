@@ -4,7 +4,7 @@
 
 A Node.js module providing a set of interfaces to interact with Discord API.
 
-#### [**Documentation**](http://qeled.github.io/discordie/)
+[**Documentation**](http://qeled.github.io/discordie/)
 
 **Requires at least Node.js 4.0.0.**
 
@@ -19,7 +19,7 @@ Join [#node_discordie](https://discord.gg/0SBTUU1wZTYM8nHo) in [Discord API](htt
 * Member management API (kicking, banning, etc.)
 * Direct messages
 * Voice encoding, sending, decoding and receiving
-(audio streaming example: [`examples/massive.js`](https://github.com/qeled/discordie/blob/master/examples/massive.js))
+(audio streaming example: [`examples/encoderstream.js`](https://github.com/qeled/discordie/blob/master/examples/encoderstream.js))
 * Guild (server) and channel management API
 * Local user profile (username change, statuses, avatars)
 * Multiserver voice support
@@ -43,14 +43,7 @@ var Events = Discordie.Events;
 
 var client = new Discordie();
 
-client.connect({
-  // **Deprecated** old way: 
-  // email: "discordie@example.com",
-  // password: ""
-
-  // Official bot API:
-  token: ""
-});
+client.connect({ token: "" });
 
 client.Dispatcher.on(Events.GATEWAY_READY, e => {
   console.log("Connected as: " + client.User.username);
@@ -96,12 +89,4 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
 **Java**:
 [austinv11/**Discord4J**](https://github.com/austinv11/Discord4J) ||
 [DV8FromTheWorld/**JDA**](https://github.com/DV8FromTheWorld/JDA/)
-
-
-
-
-## TODO
-
-* Stream interfaces for voice
-* WebRTC transport implementation (?)
 
