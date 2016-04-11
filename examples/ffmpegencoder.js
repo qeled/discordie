@@ -1,10 +1,9 @@
 "use strict";
 
-//// note: run "npm install lame" in this folder first
+//// note: install ffmpeg/avconv first
 
-// audio example implemented using AudioEncoderStream
-
-// audio decoding using "lame"
+// audio decoding and encoding using built in ffmpeg wrappers
+// (opus encoding is done entierly by ffmpeg)
 
 // commands:
 // ping
@@ -80,7 +79,7 @@ client.Dispatcher.on("MESSAGE_CREATE", (e) => {
 
 client.Dispatcher.on("VOICE_CONNECTED", e => {
   // uncomment to play on join
-  //play();
+  // play();
 });
 
 function play(info) {
@@ -90,39 +89,18 @@ function play(info) {
 
   if (!info) info = client.VoiceConnections[0];
 
-  var mp3decoder = new lame.Decoder();
-  var file = fs.createReadStream("test.mp3");
-  file.pipe(mp3decoder);
-
-  mp3decoder.on('format', pcmfmt => {
-    // note: discordie encoder does resampling if rate != 48000
-    var options = {
-      frameDuration: 60,
-      sampleRate: pcmfmt.sampleRate,
-      channels: pcmfmt.channels,
-      float: false
-    };
-
-    var encoderStream = info.voiceConnection.getEncoderStream(options);
-    if (!encoderStream) {
-      return console.log(
-        "Unable to get encoder stream, connection is disposed"
-      );
-    }
-    encoderStream.once("unpipe", () => file.destroy());
-
-    // Stream instance is persistent until voice connection is disposed;
-    // you can register timestamp listener once when connection is initialized
-    // or access timestamp with `encoderStream.timestamp`
-    encoderStream.resetTimestamp();
-    encoderStream.removeAllListeners("timestamp");
-    encoderStream.on("timestamp", time => console.log("Time " + time));
-
-    // only 1 stream at a time can be piped into AudioEncoderStream
-    // previous stream will automatically unpipe
-    mp3decoder.pipe(encoderStream);
-    mp3decoder.once('end', () => play(info));
+  var encoder = info.voiceConnection.createExternalEncoder({
+    type: "ffmpeg",
+    source: "test.mp3"
   });
+  if (!encoder) return console.log("Voice connection is no longer valid");
+
+  encoder.once("end", () => play(info));
+
+  var encoderStream = encoder.play();
+  encoderStream.resetTimestamp();
+  encoderStream.removeAllListeners("timestamp");
+  encoderStream.on("timestamp", time => console.log("Time " + time));
 }
 
 client.Dispatcher.onAny((type, e) => {
