@@ -13,6 +13,7 @@ stream.on("data", v => data += v);
 stream.on("end", () => {
   var json = JSON.parse(data);
   json.forEach(e => {
+    if (!e.meta) return;
     e.meta.path =
       path.normalize(e.meta.path)
       .replace(repoPathAbs, "")
