@@ -1,5 +1,31 @@
 # Discordie changelog
 
+## 2016-04-12, Version 0.5.0
+
+#### New:
+
+  - High level audio streams (`AudioEncoderStream`, `FFmpegEncoder`,
+    `OggOpusPlayer`, `WebmOpusPlayer`),
+    instantiated using `IVoiceConnection.createExternalEncoder`.
+
+## 2016-04-09, Version 0.4.4
+
+#### New:
+
+  - Rate limit handling for messages. All messages are now put in a queue
+    and sent sequentially;
+  - Low level audio API extensions (`AudioEncoder`) -
+    new methods `.enqueueMultiple` and `.clearQueue`;
+  - Event `GUILD_CREATE` now has a parameter `becameAvailable` to
+    discriminate between joined and unavailable guilds.
+
+#### Fixes:
+
+  - Normal precision scheduling now processes packet queue correctly;
+  - AudioEncoder queue changed to pause after 1 second of inactivity;
+  - V4 READY timeout changed to reset after each `GUILD_CREATE`;
+  - Fixed voice disconnecting after resuming gateway connection;
+
 ## 2016-04-06, Version 0.4.2
 
 #### New:
@@ -14,7 +40,7 @@
 
   - Fully migrated to bot multiserver voice API (user accounts no longer can
     connect to more than one guild concurrently);
-  - Improved voice disconnect handling logic: more info in `VOICE_DISCONNECT`
+  - Improved voice disconnect handling logic: more info in `VOICE_DISCONNECTED`
     event docs (no breaking changes);
   - Presence updates for friend lists are no longer dispatched over
     `PRESENCE_UPDATE` event;
