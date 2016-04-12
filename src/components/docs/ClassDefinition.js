@@ -39,6 +39,11 @@ const ClassDefinition = React.createClass({
 
         {src.description ? Markdown.parse(src.description) : ""}
 
+        <div>{examples.length ? <strong>Example:</strong> : ""}</div>
+        {examples}
+
+        {src.description || examples.length ? <hr/> : ""}
+
         <PropertyList name="Discord Properties" list={discordProperties}
                       linkable={false} />
         <PropertyList name="Properties" list={properties}/>
@@ -47,9 +52,6 @@ const ClassDefinition = React.createClass({
 
         <PropertyDesc name="Properties" list={properties}/>
         <PropertyDesc name="Methods" list={methods}/>
-
-        {examples}
-        <hr/>
       </div>
     );
 
