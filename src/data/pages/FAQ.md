@@ -28,6 +28,23 @@ channel.sendMessage("text");
 
 See [IMessage.isPrivate](#/docs/IMessage?p=IMessage%23isPrivate).
 
+### How do I get roles from a user?
+
+You can get an array of `IRole` from any member object:
+
+```js
+client.Dispatcher.on("MESSAGE_CREATE", e => {
+  if (e.message.content !== "getroles") return;
+
+  var member = e.message.member;
+  // same as
+  var member = e.message.author.memberOf(e.message.guild);
+
+  const roleNames = member.roles.map(role => role.name);
+  e.message.reply("Roles: " + (roleNames.join(", ") || "no roles"));
+});
+```
+
 ### How do I assign roles to members?
 
 ```js
