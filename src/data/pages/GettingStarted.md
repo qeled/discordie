@@ -44,8 +44,8 @@ This is normal behavior and the library will still work.
 ## Getting a user token
 
 > _**Note:**
-> User token support may or may not be removed from the library when 
-> the official Discord Bot API comes out._
+> User token support may or may not be removed from the library
+> in future._
 
 Press `CTRL+SHIFT+I` in your browser or the desktop app to open
 developer tools and type `localStorage.token` in console.
@@ -56,6 +56,20 @@ developer tools and type `localStorage.token` in console.
 ```
 
 Strip the double quotation marks from the string.
+
+## Creating bots accounts
+
+1. Create an [OAuth2 application](https://discordapp.com/developers/applications/me).
+2. Create a bot user and grab a token.
+3. Add the bot to your guild using OAuth2 authentication flow.
+   Replace example id `157730590492196864` with your own.
+
+```
+https://discordapp.com/oauth2/authorize?client_id=157730590492196864&scope=bot
+```
+
+See [official API documentation](https://discordapp.com/developers/docs/topics/oauth2)
+for more info.
 
 ## Example
 
