@@ -109,7 +109,6 @@ function play(info) {
         "Unable to get encoder stream, connection is disposed"
       );
     }
-    encoderStream.once("unpipe", () => file.destroy());
 
     // Stream instance is persistent until voice connection is disposed;
     // you can register timestamp listener once when connection is initialized
@@ -122,6 +121,9 @@ function play(info) {
     // previous stream will automatically unpipe
     mp3decoder.pipe(encoderStream);
     mp3decoder.once('end', () => play(info));
+
+    // must be registered after `pipe()`
+    encoderStream.once("unpipe", () => file.destroy());
   });
 }
 
