@@ -1,12 +1,23 @@
 # Discordie changelog
 
+## 2016-04-13, Version 0.5.1
+
+#### Fixes:
+
+  - Rate limited file uploads with streams now resend data correctly;
+
+#### Performance:
+
+  - Minor performance improvement for audio mixing without volume set.
+
 ## 2016-04-12, Version 0.5.0
 
 #### New:
 
   - High level audio streams (`AudioEncoderStream`, `FFmpegEncoder`,
-    `OggOpusPlayer`, `WebmOpusPlayer`),
-    instantiated using `IVoiceConnection.createExternalEncoder`.
+   `OggOpusPlayer`, `WebmOpusPlayer`),
+    instantiated using `IVoiceConnection.createExternalEncoder`
+    and `IVoiceConnection.getEncoderStream`.
 
 ## 2016-04-09, Version 0.4.4
 
