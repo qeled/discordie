@@ -1,5 +1,12 @@
 # Discordie changelog
 
+## 2016-04-14, Version 0.5.2
+
+#### Fixes:
+
+  - Fixed audio subsystem breaking (not buffering data) when using
+    [PM2](http://pm2.keymetrics.io/) (process manager);
+
 ## 2016-04-13, Version 0.5.1
 
 #### Fixes:
