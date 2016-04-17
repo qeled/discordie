@@ -17,7 +17,7 @@ var lame = require('lame');
 var fs = require('fs');
 
 var Discordie;
-try { Discordie = require("../"); } catch(e) {}
+try { Discordie = require("../../"); } catch(e) {}
 try { Discordie = require("discordie"); } catch(e) {}
 
 var client = new Discordie();

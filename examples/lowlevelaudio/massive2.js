@@ -16,7 +16,7 @@ var path = require('path');
 var child_process = require('child_process');
 
 var Discordie;
-try { Discordie = require("../"); } catch(e) {}
+try { Discordie = require("../../"); } catch(e) {}
 try { Discordie = require("discordie"); } catch(e) {}
 
 var client = new Discordie();
@@ -165,7 +165,7 @@ function play(voiceConnectionInfo) {
 
 	var sampleRate = 48000;
 	var bitDepth = 16;
-	var channels = 1;
+	var channels = 2;
 
 	if (ffmpeg) ffmpeg.kill();
 
