@@ -1,5 +1,31 @@
 # Discordie changelog
 
+## 2016-04-19, Version 0.5.5
+
+#### Fixes:
+
+  - FFmpegEncoder stdin errors can now be handled with the standard
+    `encoder.stdin.on("error", handler)`;
+  - Fixed debug mode FFmpegEncoder listener leak warnings from EventEmitter.
+
+#### Performance:
+
+  - Optimized voice state tracking;
+  - Optimized `(DirectMessage)ChannelCollection.get`;
+  - Events `PRESENCE_UPDATE` and `TYPING_START` will only fire if there are
+    listeners assigned to them.
+
+## 2016-04-17, Version 0.5.4
+
+#### New:
+
+  - Gateway sharding support (`shardId` and `shardCount` options in
+    `Discordie` constructor).
+
+#### Fixes:
+
+  - Fixed empty audio output with 48kHz input data.
+
 ## 2016-04-14, Version 0.5.2
 
 #### Fixes:
