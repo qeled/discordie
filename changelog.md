@@ -1,5 +1,15 @@
 # Discordie changelog
 
+## 2016-04-25, Version 0.5.6
+
+#### Fixes:
+
+  - `READY` timeout no longer fires after a disconnect.
+
+#### Performance:
+
+  - Internal opus now starts faster.
+
 ## 2016-04-19, Version 0.5.5
 
 #### Fixes:
