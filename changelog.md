@@ -1,5 +1,13 @@
 # Discordie changelog
 
+## 2016-04-28, Version 0.5.7
+
+#### Fixes:
+
+  - FFmpeg processes will be killed with `SIGKILL` if not exited within
+    5 second timeout;
+  - Method `uploadFile` now checks file existence if called with a file path.
+
 ## 2016-04-25, Version 0.5.6
 
 #### Fixes:
