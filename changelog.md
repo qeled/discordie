@@ -1,5 +1,24 @@
 # Discordie changelog
 
+## 2016-05-04, Version 0.6.0
+
+#### New:
+
+  - Method `IMessage.resolveContent()` resolving `<@(#|!|&)?id>` entities to
+    names to get human readable content;
+  - Nickname support:
+    - Permissions `CHANGE_NICKNAME`, `MANAGE_NICKNAMES`;
+    - `IGuildMember.nick` property;
+    - `IGuildMember.name` getter, returns nick if exists, otherwise username;
+    - `IGuildMember.setNickname(nick)` method.
+  - Mentionable roles:
+    - `IMessage.mention_roles` property;
+    - Param `mentionable` in `IRole.commit(name, color, hoist, mentionable)`.
+  - Mentions:
+    - `IUser/IGuildMember.nickMention` getter;
+    - `ITextChannel.mention` getter;
+    - `IRole.mention` getter.
+
 ## 2016-04-28, Version 0.5.7
 
 #### Fixes:
