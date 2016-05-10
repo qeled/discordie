@@ -1,5 +1,21 @@
 # Discordie changelog
 
+## 2016-05-10, Version 0.6.1
+
+#### Discord API Changes:
+
+  - [New `MANAGE_ROLES` (`ADMINISTRATOR`) permission](https://github.com/hammerandchisel/discord-api-docs/issues/41).
+
+#### New:
+
+  - Bulk-delete messages with `IMessageCollection.deleteMessages(array)`;
+  - Channel cloning `IChannel.clone(name, type, bitrate)`;
+  - Added params `permissionOverwrites`, `bitrate` to `IGuild.createChannel`.
+
+#### Fixes:
+
+  - Fixed self nicknames not setting without `MANAGE_NICKNAMES` permission.
+
 ## 2016-05-04, Version 0.6.0
 
 #### New:
