@@ -19,7 +19,7 @@ var Discordie;
 try { Discordie = require("../"); } catch(e) {}
 try { Discordie = require("discordie"); } catch(e) {}
 
-var client = new Discordie();
+var client = new Discordie({autoReconnect: true});
 
 var auth = { token: "<BOT-TOKEN>" };
 try { auth = require("./auth"); } catch(e) {}

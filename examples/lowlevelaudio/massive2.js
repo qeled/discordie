@@ -19,7 +19,7 @@ var Discordie;
 try { Discordie = require("../../"); } catch(e) {}
 try { Discordie = require("discordie"); } catch(e) {}
 
-var client = new Discordie();
+var client = new Discordie({autoReconnect: true});
 
 var auth = { token: "<BOT-TOKEN>" };
 try { auth = require("./auth"); } catch(e) {}
@@ -55,18 +55,6 @@ client.Dispatcher.on(Discordie.Events.GATEWAY_READY, (e) => {
 		return console.log("Channel not found");
 	}
 	console.log("Guild not found");
-});
-
-client.Dispatcher.on(Discordie.Events.DISCONNECTED, (e) => {
-	const delay = 5000;
-	const sdelay = Math.floor(delay/100)/10;
-
-	if (e.error.message.indexOf("gateway") >= 0) {
-		console.log("Disconnected from gw, resuming in " + sdelay + " seconds");
-	} else {
-		console.log("Failed to log in or get gateway, reconnecting in " + sdelay + " seconds");
-	}
-	setTimeout(connect, delay);
 });
 
 client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
