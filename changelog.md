@@ -1,5 +1,13 @@
 # Discordie changelog
 
+## 2016-05-14, Version 0.6.2
+
+#### New:
+
+  - Auto-reconnect with a constructor option:
+    `new Discordie({autoReconnect: true});`;
+  - Profile editing aliases `IAuthenticatedUser.setAvatar/setUsername`.
+
 ## 2016-05-10, Version 0.6.1
 
 #### Discord API Changes:
