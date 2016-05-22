@@ -1,5 +1,16 @@
 # Discordie changelog
 
+## 2016-05-23, Version 0.6.4
+
+#### New:
+
+  - User limits in voice channels:
+
+    - Added param `userLimit` to `IChannel.update`;
+    - Channel property `user_limit`;
+    - Method `channel.join()` will return rejected promise if channel is full
+      and permission `Voice.MOVE_MEMBERS` is denied.
+
 ## 2016-05-14, Version 0.6.2
 
 #### New:
