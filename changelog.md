@@ -1,5 +1,12 @@
 # Discordie changelog
 
+## 2016-05-29, Version 0.6.5
+
+#### Fixes:
+
+  - Workaround for `FFmpegEncoder` 'end' event not firing on
+    nodejs v5.11.0/4.4.5+.
+
 ## 2016-05-23, Version 0.6.4
 
 #### New:
