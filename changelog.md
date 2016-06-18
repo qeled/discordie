@@ -1,5 +1,21 @@
 # Discordie changelog
 
+## 2016-06-18, Version 0.7.0
+
+#### New:
+
+  - Gateway V5 support;
+  - Event `MESSAGE_DELETE_BULK`;
+  - Integrated API (REST) error messages;
+    (ex. `Error: Bad Request (Cannot send an empty message)`);
+  - MFA fields: `IAuthenticatedUser.mfa_enabled`, `IGuild.mfa_level`;
+  - Automatic `Bad Gateway` (HTTP 502) handling, will only throw a 502 after
+    10 retries.
+
+#### Fixes:
+
+  - Permission overwrites for voice channels now actually have `Voice` section.
+
 ## 2016-05-29, Version 0.6.5
 
 #### Fixes:
