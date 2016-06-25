@@ -1,5 +1,35 @@
 # Discordie changelog
 
+## 2016-06-25, Version 0.7.2
+
+#### New:
+
+  - Event `GUILD_MEMBER_UPDATE` now exposes object changes:
+
+    - **{Array\<IRole>}** `rolesAdded`;
+    - **{Array\<IRole>}** `rolesRemoved`;
+    - **{String|null}** `previousNick`.
+
+  - `IAuthenticatedUser.setGame/setStatus` now also accept games as strings;
+
+  - Message pinning support:
+
+    - ITextChannel
+      - **{Array\<IMessage>}** `ITextChannel.pinnedMessages`;
+      - **{Promise\<Object, Error>}** `ITextChannel.fetchPinned()`;
+
+    - IMessage
+      - **{Boolean}** `IMessage.pinned`;
+      - **{Promise\<IMessage, Error>}** `IMessage.pin()`;
+      - **{Promise\<IMessage, Error>}** `IMessage.unpin()`;
+
+    - IMessageCollection
+      - **{Array\<IMessage>}** `IMessageCollection.forChannelPinned(channel)` (same as `pinnedMessages`);
+      - **{Promise}** `IMessageCollection.pinMessage(messageId, channelId)`;
+      - **{Promise}** `IMessageCollection.unpinMessage(messageId, channelId)`;
+      - **{void}** `IMessageCollection.purgeChannelPinned(channel)`;
+      - **{void}** `IMessageCollection.purgePinned()`.
+
 ## 2016-06-18, Version 0.7.0
 
 #### New:
