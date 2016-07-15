@@ -27,7 +27,7 @@
     "requireindex": "^1.1.0",
     "superagent": "^1.4.0",
     "tweetnacl": "^0.14.1",
-    "ws": "^0.8.0"
+    "ws": "^1.1.1"
   },
   "engineStrict": true,
   "engines": {
