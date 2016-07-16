@@ -1,5 +1,23 @@
 # Discordie changelog
 
+## 2016-07-16, Version 0.7.3
+
+#### API changes:
+
+  - Removed human readable invites.
+
+#### Fixes:
+
+  - Order of pinned messages now matches the client;
+  - Upgraded `ws` dependency from v0.8.0 to v1.1.1, fixes crash on node v6.x.x;
+  - Property `previousNick` in `GUILD_MEMBER_UPDATE` is now set correctly.
+
+#### Other:
+
+  - Changed permission (methods `IUser/IGuildMember.permissionsFor/can`)
+    error message from `"Invalid user"` to
+    `"User is not a member of the context"`.
+
 ## 2016-06-25, Version 0.7.2
 
 #### New:
