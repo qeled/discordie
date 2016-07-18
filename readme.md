@@ -57,13 +57,17 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
 
 ## Related
 
+### Library comparison: https://discordapi.com/unofficial/comparison.html
+
 **.NET**:
 [RogueException/**Discord.Net**](https://github.com/RogueException/Discord.Net) ||
-[Luigifan/**DiscordSharp**](https://github.com/Luigifan/DiscordSharp)
+[Luigifan/**DiscordSharp**](https://github.com/Luigifan/DiscordSharp) ||
+[robinhood128/**DiscordUnity**](https://github.com/robinhood128/DiscordUnity)
 
 **Node.js**:
 [izy521/**discord.io**](https://github.com/izy521/discord.io) ||
-[hydrabolt/**discord.js**](https://github.com/hydrabolt/discord.js)
+[hydrabolt/**discord.js**](https://github.com/hydrabolt/discord.js) ||
+[abalabahaha/**eris**](https://github.com/abalabahaha/eris)
 
 **Python**:
 [Rapptz/**discord.py**](https://github.com/Rapptz/discord.py)
@@ -72,9 +76,7 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
 [meew0/**discordrb**](https://github.com/meew0/discordrb)
 
 **Go**:
-[bwmarrin/**discordgo**](https://github.com/bwmarrin/discordgo) ||
-[gdraynz/**go-discord**](https://github.com/gdraynz/go-discord) ||
-[Xackery/**discord**](https://github.com/Xackery/discord)
+[bwmarrin/**discordgo**](https://github.com/bwmarrin/discordgo)
 
 **Rust**:
 [SpaceManiac/**discord-rs**](https://github.com/SpaceManiac/discord-rs)
@@ -83,10 +85,12 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
 [teamreflex/**DiscordPHP**](https://github.com/teamreflex/DiscordPHP) ||
 [Cleanse/**discord-hypertext**](https://github.com/Cleanse/discord-hypertext)
 
-**Scala**:
-[eaceaser/**discord-akka**](https://github.com/eaceaser/discord-akka)
-
 **Java**:
 [austinv11/**Discord4J**](https://github.com/austinv11/Discord4J) ||
-[DV8FromTheWorld/**JDA**](https://github.com/DV8FromTheWorld/JDA/)
+[DV8FromTheWorld/**JDA**](https://github.com/DV8FromTheWorld/JDA/) ||
+[BtoBastian/**Javacord**](https://github.com/BtoBastian/Javacord)
+
+**Lua**:
+[SinisterRectus/**Discordia**](https://github.com/SinisterRectus/Discordia) ||
+[satom99/**litcord**](https://github.com/satom99/litcord)
 
