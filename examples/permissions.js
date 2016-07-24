@@ -69,31 +69,34 @@ function doCommand(e) {
     /*
      List of role permissions:
      General: {
-     CREATE_INSTANT_INVITE,
-     KICK_MEMBERS,
-     BAN_MEMBERS,
-     MANAGE_ROLES,
-     MANAGE_CHANNELS,
-     MANAGE_GUILD,
-     },
+       CREATE_INSTANT_INVITE,
+       KICK_MEMBERS,
+       BAN_MEMBERS,
+       ADMINISTRATOR,
+       MANAGE_CHANNELS,
+       MANAGE_GUILD,
+       CHANGE_NICKNAME,
+       MANAGE_NICKNAMES,
+       MANAGE_ROLES,
      Text: {
-     READ_MESSAGES,
-     SEND_MESSAGES,
-     SEND_TTS_MESSAGES,
-     MANAGE_MESSAGES,
-     EMBED_LINKS,
-     ATTACH_FILES,
-     READ_MESSAGE_HISTORY,
-     MENTION_EVERYONE,
+       READ_MESSAGES,
+       SEND_MESSAGES,
+       SEND_TTS_MESSAGES,
+       MANAGE_MESSAGES,
+       EMBED_LINKS,
+       ATTACH_FILES,
+       READ_MESSAGE_HISTORY,
+       MENTION_EVERYONE,
+       EXTERNAL_EMOTES,
      },
      Voice: {
-     CONNECT,
-     SPEAK,
-     MUTE_MEMBERS,
-     DEAFEN_MEMBERS,
-     MOVE_MEMBERS,
-     USE_VAD,
-     }
+       CONNECT,
+       SPEAK,
+       MUTE_MEMBERS,
+       DEAFEN_MEMBERS,
+       MOVE_MEMBERS,
+       USE_VAD,
+    }
      */
 
     var perms = role.permissions;
