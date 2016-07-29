@@ -1,5 +1,30 @@
 # Discordie changelog
 
+## 2016-07-29, Version 0.7.5
+
+#### API changes:
+
+  - New permission `General.EXTERNAL_EMOTES`.
+
+#### New:
+
+  - Preemptive rate limit handling: bots can now send messages as fast
+    as they are allowed;
+  - Collection lengths are now printed when inspected with `console.log`:
+    ex. `IGuildCollection { length: 8 }`;
+  - `IDirectMessageChannel` now supports fetching pinned messages.
+
+#### Fixes:
+
+  - Fixed rare case of voice states not syncing after gateway being `RESUMED`;
+  - Fixed some promises returning strings instead of proper `Error` objects;
+  - Fixed array collections crashing on latest V8 engine.
+
+#### Other:
+
+  - Buffers are now allocated using `Buffer.alloc`/`Buffer.from` instead of
+    deprecated `Buffer` constructor whenever possible.
+
 ## 2016-07-16, Version 0.7.3
 
 #### API changes:
