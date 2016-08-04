@@ -1,5 +1,17 @@
 # Discordie changelog
 
+## 2016-08-04, Version 0.7.6
+
+#### New:
+
+  - Emoji field support: `IGuild.emojis`;
+  - Bot application and owner info: `IAuthenticatedUser.getApplication()`.
+
+#### Other:
+
+  - `ICollectionBase.forEach` now doesn't stop iterating if you return a
+    truthy value in the callback.
+
 ## 2016-07-29, Version 0.7.5
 
 #### API changes:
