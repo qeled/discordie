@@ -1,5 +1,81 @@
 # Discordie changelog
 
+## 2016-08-17, Version 0.8.0
+
+#### Breaking Discord API v6 changes:
+
+  - Channel type is now a number, not string `"text"` and `"voice"`:
+    see [`Discordie.ChannelTypes`](https://qeled.github.io/discordie/#/docs/IChannel);
+  - Direct message channels now have **{Array\<IUser>}** `recipients`
+    instead of **{String}** `recipient_id`, getter **{IUser}** `recipient`
+    added and marked as deprecated;
+  - Channel field `is_private` has been removed from the API,
+    getters [`isPrivate` and `is_private`](https://qeled.github.io/discordie/#/docs/IChannel?p=IChannel%23is_private)
+    added to replace it. Getter `is_private` is marked as deprecated.
+
+#### Overview of API v6 changes:
+
+  - New events `CALL_CREATE`, `CALL_UPDATE`, `CALL_DELETE`,
+    `CHANNEL_RECIPIENT_ADD`, `CHANNEL_RECIPIENT_REMOVE`;
+  - Message fields added:
+    - **{Number}** `type`:
+      everything other than 0 is a system message,
+      see [`Discordie.MessageTypes`](https://qeled.github.io/discordie/#/docs/IMessage);
+    - **{Object}** `call`: [object](http://qeled.github.io/discordie/#/docs/IMessage?p=IMessage.call)
+      present if this is a system message with call info.
+  - Channel fields removed:
+      **{String}** `type`,
+      **{Boolean}** `is_private`;
+  - Channel fields added:
+      **{Number}** `type`,
+      **{Array<IUser>}** `recipients`,
+      **{String|null}** `owner_id`,
+      **{String|null}** `icon`.
+
+#### Library changes:
+
+  - New local events `CALL_UNAVAILABLE`, `CALL_RING`;
+  - New method `IDirectMessageChannelCollection.createGroupDM()`;
+  - **`IDirectMessageChannel`**:
+    - New getters:
+      - **{[ICall](http://qeled.github.io/discordie/#/docs/ICall)}** `call`;
+      - **{Array<IUser>|null}** `usersInCall`;
+      - **{IAuthenticatedUser|IUser|null}** `owner`;
+      - **{String|null}** `iconURL`;
+    - New methods:
+      - **{Boolean}** `isOwner(user)`;
+      - **{Promise}** `ring(recipients)` (user accounts only);
+      - **{Promise}** `stopRinging(recipients)` (user accounts only);
+      - **{Promise}** `changeCallRegion(region)` (user accounts only);
+      - **{Promise}** `addRecipient(user)` (user accounts only);
+      - **{Promise}** `removeRecipient(user)` (user accounts only);
+      - **{Promise\<IDirectMessageChannel, Error>}** `setName(name)`;
+      - **{Promise\<IDirectMessageChannel, Error>}** `setIcon(icon)`;
+      - **{Promise}** `joinCall(selfMute, selfDeaf)` (user accounts only);
+      - **{void}** `leaveCall()`;
+      - **{VoiceConnectionInfo|null}** `getVoiceConnectionInfo()`;
+      - **{Promise<ICall|null, Error>}** `fetchCall()`;
+    - Marked getter `recipient` as deprecated, use `recipients` instead;
+  - **`IMessage`**:
+    - New getters:
+      - **{Boolean|null}** `isSystem`;
+      - **{String|null}** `systemMessage`;
+  - `IUser.getVoiceChannel(guild)` now accepts null guild;
+  - New method `IUserCollection.usersInCall(channel)`.
+
+#### New:
+
+  - Option to disable implicit mentions in
+    `user.isMentioned(message, ignoreImplicitMentions)`;
+  - Bot token header is now forced depending on account type received in
+    `READY`;
+  - Updated rate limits, including header support.
+
+#### Fixed:
+
+  - `channel.fetchMessages()` failing with Discord's new parameter validation
+    (since 2016-08-11).
+
 ## 2016-08-04, Version 0.7.6
 
 #### New:
