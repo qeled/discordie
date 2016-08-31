@@ -1,5 +1,11 @@
 # Discordie changelog
 
+## 2016-08-31, Version 0.8.1
+
+  - Minor changes in rate limit bucket structure, X-RateLimit-Reset support;
+  - Calling `member.unban()` on invalid member objects no longer throws;
+  - Added `CHANNEL_PINNED_MESSAGE` (type 6) to `Discordie.MessageTypes`.
+
 ## 2016-08-17, Version 0.8.0
 
 #### Breaking Discord API v6 changes:
