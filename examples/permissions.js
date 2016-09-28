@@ -78,6 +78,9 @@ function doCommand(e) {
        CHANGE_NICKNAME,
        MANAGE_NICKNAMES,
        MANAGE_ROLES,
+       MANAGE_WEBHOOKS,
+       MANAGE_EMOJIS,
+     },
      Text: {
        READ_MESSAGES,
        SEND_MESSAGES,
@@ -96,8 +99,8 @@ function doCommand(e) {
        DEAFEN_MEMBERS,
        MOVE_MEMBERS,
        USE_VAD,
-    }
-     */
+     }
+    */
 
     var perms = role.permissions;
     perms.General.KICK_MEMBERS = true;
