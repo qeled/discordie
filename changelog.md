@@ -1,5 +1,61 @@
 # Discordie changelog
 
+## 2016-10-19, Version 0.9.0
+
+#### New:
+
+  - Events `CHANNEL_UPDATE`, `GUILD_UPDATE`, `GUILD_MEMBER_UPDATE`,
+    `GUILD_ROLE_UPDATE`, `GUILD_EMOJIS_UPDATE` now contain a function
+    `getChanges()` for getting state object `{before, after}`;
+  - Events `GUILD_DELETE`, `GUILD_MEMBER_REMOVE`, `GUILD_ROLE_DELETE`
+    now contain a function `getCachedData()` for getting deleted state object;
+  - Added `data` field to `GUILD_MEMBER_REMOVE` event;
+  - Method `sendMessage` now converts into string any non-string input data;
+  - Support for `"dnd"` and `"invisible"` statuses;
+  - `IAuthenticatedUser.setStatus` now supports status object
+    `{status: String, afk: Boolean}`;
+  - Added `General` permissions: `MANAGE_WEBHOOKS`, `MANAGE_EMOJIS`;
+  - Getter `IMessage.displayUsername` returning a username or nick if present;
+  - Webhooks:
+    - Event `WEBHOOKS_UPDATE`;
+    - Message field **{String}** `IMessage.webhook_id`;
+    - Getter **{Boolean}**`IUser.isWebhook`;
+    - `IWebhookManager` as `Discordie.Webhooks`:
+      - **{Promise\<Array\<Object>, Error>}** `fetchForGuild(guild)`;
+      - **{Promise\<Array\<Object>, Error>}** `fetchForChannel(channel)`;
+      - **{Promise\<Object, Error>}** `create(channel, options)`;
+      - **{Promise\<Object, Error>}** `fetch(webhook, token)`;
+      - **{Promise\<Object, Error>}** `edit(webhook, token, options)`;
+      - **{Promise}** `delete(webhook, token)`;
+      - **{Promise}** `execute(webhook, token, options, wait)`;
+      - **{Promise}** `executeSlack(webhook, token, options, wait)`;
+  - `IGuild` emoji methods (user accounts only):
+      - **{Promise\<Array\<Object>, Error>}** `fetchEmoji()`;
+      - **{Promise\<Object, Error>}** `uploadEmoji(image, name)`;
+      - **{Promise}** `deleteEmoji(emoji)`;
+      - **{Promise\<Object, Error>}** `editEmoji(emoji, options)`;
+      - **{String|null}** `getEmojiURL(emoji)`;
+  - Presence (status and game) can now be set before `GATEWAY_READY`;
+  - Added param `userLimit` to method `IGuild.createChannel` and
+    `IChannel.clone`;
+  - Added `IGuild` field `default_message_notifications`;
+  - Added params `roles`, `channels`, `verificationLevel`,
+    `defaultMessageNotifications` to method `IGuild.create`;
+  - Added param `defaultMessageNotifications` to method `IGuild.edit`;
+  - `IGuild` widget properties `embed_enabled`, `embed_channel_id` have been
+    replaced with methods `getWidget()` and `editWidget(options)`;
+
+#### Fixed:
+
+  - Fixed `guild.member_count` being erased after `GUILD_UPDATE`;
+  - Calling `JSON.stringify` on interfaces not converting internal
+    `Map`s and `Set`s into arrays (ex. `roles` array in an `IGuild`);
+  - Event `GUILD_MEMBER_REMOVE` no longer emits for self due to
+    race condition between `GUILD_DELETE` and `GUILD_MEMBER_REMOVE`;
+  - Fixed role reordering;
+  - Fixed `IChannel.clone` not handling channel types correctly;
+
+
 ## 2016-08-31, Version 0.8.1
 
   - Minor changes in rate limit bucket structure, X-RateLimit-Reset support;
