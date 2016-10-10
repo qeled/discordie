@@ -91,6 +91,7 @@ function doCommand(e) {
        READ_MESSAGE_HISTORY,
        MENTION_EVERYONE,
        EXTERNAL_EMOTES,
+       ADD_REACTIONS,
      },
      Voice: {
        CONNECT,
