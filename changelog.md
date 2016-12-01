@@ -1,5 +1,28 @@
 # Discordie changelog
 
+## 2016-12-01, Version 0.10.0
+
+#### New:
+
+  - Reactions:
+    - Events `MESSAGE_REACTION_ADD`, `MESSAGE_REACTION_REMOVE`,
+      `MESSAGE_REACTION_REMOVE_ALL`;
+    - Permission `ADD_REACTIONS`;
+    - Methods:
+      - **{Promise\<Array\<IUser>, Error>}** `IMessage.fetchReactions(emoji, limit, after)`;
+      - **{Promise}** `IMessage.addReaction(emoji)`;
+      - **{Promise}** `IMessage.removeReaction(emoji, user)`;
+  - `IGuild.editEmoji` now supports arrays of `IRole`;
+  - Embed support in messages: `ITextChannel.sendMessage(..., embed)`,
+    `IMessage.edit(content, embed)`;
+  - `IMessage.edit(content, ...)` now stringifies `content` if not string.
+
+#### Fixed:
+
+  - Guild icon/splash/emoji url generators not using CDN endpoint;
+  - Sharding option validation error messages are now more specific.
+
+
 ## 2016-10-19, Version 0.9.0
 
 #### New:
