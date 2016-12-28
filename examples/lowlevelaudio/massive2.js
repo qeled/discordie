@@ -72,11 +72,8 @@ client.Dispatcher.on(Discordie.Events.MESSAGE_CREATE, (e) => {
 		var c = e.message.channel;
 
 		client.Channels
-		.filter(channel => channel.type == "voice")
-		.forEach(channel => {
-			if(channel.joined)
-				channel.leave();
-		});
+		.filter(channel => channel.isGuildVoice && channel.joined)
+		.forEach(channel => channel.leave());
 	}
 	if(e.message.content.indexOf("vjoin ") == 0) {
 		const targetChannel = e.message.content.replace("vjoin ", "");

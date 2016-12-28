@@ -48,7 +48,7 @@ client.Dispatcher.on("MESSAGE_CREATE", (e) => {
 
   if (content == "vleave") {
     client.Channels
-    .filter(channel => channel.type == "voice" && channel.joined)
+    .filter(channel => channel.isGuildVoice && channel.joined)
     .forEach(channel => channel.leave());
   }
 
