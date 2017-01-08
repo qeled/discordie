@@ -1,5 +1,17 @@
 # Discordie changelog
 
+## 2017-01-08, Version 0.11.0
+
+#### New:
+
+  - GIF support in `IUser.avatarURL`, added `IUser.staticAvatarURL`;
+  - Added `isGuildVoice`, `isGuildText`, `isDM`, `isGroupDM` getters to channels.
+
+#### Fixed:
+
+  - Pending voice connections failing to create while already connecting;
+
+
 ## 2016-12-01, Version 0.10.0
 
 #### New:
