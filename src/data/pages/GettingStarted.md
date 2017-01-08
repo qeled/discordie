@@ -48,14 +48,15 @@ This is normal behavior and the library will still work.
 > in future._
 
 Press `CTRL+SHIFT+I` in your browser or the desktop app to open
-developer tools and type `localStorage.token` in console.
+developer tools, switch to the `Application` tab and expand `Local Storage`
+tree. Find the `token` value that looks like this:
 
 ```
-> localStorage.token
-""MYMzNDIzT1NjEkN5MTgT3zEz.djCoWw.rShRcJvCcmKI1hOTlJQ4lnWKMZQ""
+"MYMzNDIzT1NjEkN5MTgT3zEz.djCoWw.rShRcJvCcmKI1hOTlJQ4lnWKMZQ"
 ```
 
-Strip the double quotation marks from the string.
+Note that this method only works in the Discord desktop app and Chromium-based
+browsers.
 
 ## Creating bots accounts
 
